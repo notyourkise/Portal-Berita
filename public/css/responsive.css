@@ -1,0 +1,477 @@
+/* =============================================
+   PORTAL BERITA - RESPONSIVE UTILITIES
+   ============================================= */
+
+/* =============================================
+   MOBILE FIRST - BASE STYLES (320px+)
+   ============================================= */
+
+/* Container Responsive */
+.container-responsive {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Typography Responsive */
+.text-responsive-sm {
+    font-size: 0.85rem;
+}
+
+.text-responsive-base {
+    font-size: 1rem;
+}
+
+.text-responsive-lg {
+    font-size: 1.1rem;
+}
+
+/* Image Responsive */
+.img-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.img-contain {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
+
+/* Card Responsive Heights */
+.card-height-sm {
+    height: 100px;
+}
+
+.card-height-md {
+    height: 120px;
+}
+
+.card-height-lg {
+    height: 150px;
+}
+
+/* Spacing Utilities */
+.spacing-mobile {
+    padding: 0.5rem;
+}
+
+.spacing-tablet {
+    padding: 1rem;
+}
+
+.spacing-desktop {
+    padding: 1.5rem;
+}
+
+/* =============================================
+   MOBILE PHONES (up to 575px)
+   ============================================= */
+@media (max-width: 575.98px) {
+    .container-responsive {
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Hide on mobile */
+    .d-mobile-none {
+        display: none !important;
+    }
+
+    /* Show only on mobile */
+    .d-mobile-block {
+        display: block !important;
+    }
+
+    .d-mobile-flex {
+        display: flex !important;
+    }
+
+    /* Typography */
+    .h1-responsive {
+        font-size: 1.5rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 1.3rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.1rem !important;
+    }
+
+    .h4-responsive {
+        font-size: 1rem !important;
+    }
+
+    .h5-responsive {
+        font-size: 0.95rem !important;
+    }
+
+    .h6-responsive {
+        font-size: 0.9rem !important;
+    }
+
+    /* Card adjustments */
+    .card-mobile {
+        margin-bottom: 0.75rem;
+    }
+
+    .card-body-mobile {
+        padding: 0.75rem !important;
+    }
+
+    /* Button sizes */
+    .btn-mobile {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* Grid gaps */
+    .gap-mobile {
+        gap: 0.5rem !important;
+    }
+
+    .g-mobile {
+        gap: 0.5rem !important;
+    }
+
+    /* Flex direction */
+    .flex-mobile-column {
+        flex-direction: column !important;
+    }
+
+    /* Text alignment */
+    .text-mobile-center {
+        text-align: center !important;
+    }
+
+    /* Image heights */
+    .img-height-mobile-sm {
+        height: 120px !important;
+    }
+
+    .img-height-mobile-md {
+        height: 150px !important;
+    }
+
+    .img-height-mobile-lg {
+        height: 180px !important;
+    }
+}
+
+/* =============================================
+   TABLETS PORTRAIT (576px - 767px)
+   ============================================= */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .container-responsive {
+        max-width: 540px;
+    }
+
+    .d-tablet-none {
+        display: none !important;
+    }
+
+    .d-tablet-block {
+        display: block !important;
+    }
+
+    .h1-responsive {
+        font-size: 1.8rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 1.5rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.3rem !important;
+    }
+
+    .img-height-tablet-sm {
+        height: 140px !important;
+    }
+
+    .img-height-tablet-md {
+        height: 180px !important;
+    }
+
+    .img-height-tablet-lg {
+        height: 220px !important;
+    }
+}
+
+/* =============================================
+   TABLETS LANDSCAPE (768px - 991px)
+   ============================================= */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .container-responsive {
+        max-width: 720px;
+    }
+
+    .h1-responsive {
+        font-size: 2rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 1.6rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.4rem !important;
+    }
+
+    .img-height-tablet-landscape-sm {
+        height: 160px !important;
+    }
+
+    .img-height-tablet-landscape-md {
+        height: 200px !important;
+    }
+
+    .img-height-tablet-landscape-lg {
+        height: 240px !important;
+    }
+}
+
+/* =============================================
+   SMALL DESKTOPS (992px - 1199px)
+   ============================================= */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .container-responsive {
+        max-width: 960px;
+    }
+
+    .d-desktop-none {
+        display: none !important;
+    }
+
+    .d-desktop-block {
+        display: block !important;
+    }
+
+    .h1-responsive {
+        font-size: 2.2rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 1.75rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.5rem !important;
+    }
+
+    .img-height-desktop-sm {
+        height: 180px !important;
+    }
+
+    .img-height-desktop-md {
+        height: 220px !important;
+    }
+
+    .img-height-desktop-lg {
+        height: 260px !important;
+    }
+}
+
+/* =============================================
+   LARGE DESKTOPS (1200px - 1399px)
+   ============================================= */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .container-responsive {
+        max-width: 1140px;
+    }
+
+    .h1-responsive {
+        font-size: 2.5rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 2rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.75rem !important;
+    }
+
+    .img-height-lg-desktop-sm {
+        height: 200px !important;
+    }
+
+    .img-height-lg-desktop-md {
+        height: 240px !important;
+    }
+
+    .img-height-lg-desktop-lg {
+        height: 280px !important;
+    }
+}
+
+/* =============================================
+   EXTRA LARGE DESKTOPS (1400px+)
+   ============================================= */
+@media (min-width: 1400px) {
+    .container-responsive {
+        max-width: 1320px;
+    }
+
+    .h1-responsive {
+        font-size: 3rem !important;
+    }
+
+    .h2-responsive {
+        font-size: 2.25rem !important;
+    }
+
+    .h3-responsive {
+        font-size: 1.875rem !important;
+    }
+
+    .img-height-xl-desktop-sm {
+        height: 220px !important;
+    }
+
+    .img-height-xl-desktop-md {
+        height: 260px !important;
+    }
+
+    .img-height-xl-desktop-lg {
+        height: 300px !important;
+    }
+}
+
+/* =============================================
+   ORIENTATION UTILITIES
+   ============================================= */
+
+/* Landscape on mobile/tablet */
+@media (max-width: 991.98px) and (orientation: landscape) {
+    .landscape-reduce-height {
+        max-height: 150px !important;
+    }
+
+    .navbar-landscape {
+        padding: 0.25rem 0 !important;
+    }
+}
+
+/* Portrait specific */
+@media (orientation: portrait) {
+    .portrait-full-width {
+        width: 100% !important;
+    }
+}
+
+/* =============================================
+   TOUCH DEVICE UTILITIES
+   ============================================= */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger tap targets for touch */
+    .btn-touch {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+    }
+
+    /* Remove hover effects on touch */
+    .no-touch-hover:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* =============================================
+   PRINT STYLES
+   ============================================= */
+@media print {
+    /* Hide navigation and interactive elements */
+    .navbar,
+    .nav,
+    footer,
+    .btn,
+    .sidebar,
+    .advertisement,
+    .share-buttons,
+    .pagination {
+        display: none !important;
+    }
+
+    /* Optimize for print */
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    /* Page breaks */
+    .page-break-before {
+        page-break-before: always;
+    }
+
+    .page-break-after {
+        page-break-after: always;
+    }
+
+    .page-break-inside-avoid {
+        page-break-inside: avoid;
+    }
+
+    /* Links */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY UTILITIES
+   ============================================= */
+
+/* Focus visible for keyboard navigation */
+@media (prefers-reduced-motion: no-preference) {
+    *:focus-visible {
+        outline: 2px solid #ff9800;
+        outline-offset: 2px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid currentColor !important;
+    }
+
+    .btn {
+        border: 2px solid currentColor !important;
+    }
+}

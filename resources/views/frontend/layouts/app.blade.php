@@ -118,6 +118,33 @@
             font-size: 1.5rem;
         }
 
+        /* Hamburger Menu - Positioned Right */
+        .navbar-toggler {
+            border: 2px solid #ff9800;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            background-color: #ff9800;
+            border-color: #ff9800;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 152, 0, 0.25);
+        }
+
+        .navbar-toggler-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 152, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar-toggler:hover .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
         .main-menu .nav-link {
             padding: 1rem 0.9rem;
             font-weight: 500;
@@ -139,9 +166,37 @@
         }
 
         /* Dropdown Menu Styling */
-        .mega-dropdown:hover .dropdown-menu {
-            display: block;
-            margin-top: 0;
+        .mega-dropdown {
+            position: relative;
+        }
+
+        /* Desktop: hover to show */
+        @media (min-width: 992px) {
+            .mega-dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
+        }
+
+        /* Mobile: click to toggle */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                display: none;
+                position: static;
+                float: none;
+                width: 100%;
+                margin: 0;
+                border: none;
+                box-shadow: none;
+            }
+
+            .dropdown-menu.show {
+                display: block;
+            }
+
+            .nav-item.show > .dropdown-menu {
+                display: block;
+            }
         }
 
         .dropdown-menu-dark {
@@ -151,6 +206,11 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             min-width: 200px;
             padding: 0.5rem 0;
+        }
+
+        .dropdown-divider {
+            border-color: #444;
+            margin: 0.5rem 0;
         }
 
         .dropdown-menu-dark .dropdown-item {
@@ -164,6 +224,20 @@
             background-color: #333;
             color: #ff9800;
             padding-left: 2rem;
+        }
+
+        .dropdown-menu-dark .dropdown-item i {
+            margin-right: 0.5rem;
+            color: #ff9800;
+        }
+
+        /* Dropdown arrow animation */
+        .dropdown-toggle::after {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.show .dropdown-toggle::after {
+            transform: rotate(180deg);
         }
 
         /* Search Bar */
@@ -289,39 +363,458 @@
             color: #d97706;
         }
 
-        /* Responsive Media Queries */
-        @media (max-width: 768px) {
+        /* ========================================
+           RESPONSIVE MEDIA QUERIES
+           ======================================== */
+
+        /* Mobile First Base Styles */
+        .card-article img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* ========================================
+           MOBILE PHONES (320px - 575px)
+           ======================================== */
+        @media (max-width: 575.98px) {
+            /* Typography */
             .navbar-brand {
+                font-size: 1.1rem !important;
+            }
+
+            /* Hamburger menu mobile */
+            .navbar-toggler {
+                padding: 0.4rem 0.6rem;
+                border-width: 2px;
+            }
+
+            .navbar-toggler-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+            }
+
+            .section-title {
                 font-size: 1.2rem !important;
+                margin-bottom: 1rem;
+            }
+
+            h1, .h1 {
+                font-size: 1.5rem;
+            }
+
+            h2, .h2 {
+                font-size: 1.3rem;
+            }
+
+            h3, .h3 {
+                font-size: 1.1rem;
+            }
+
+            h5, .h5 {
+                font-size: 1rem;
+            }
+
+            /* Container & Spacing */
+            .container {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+
+            .row {
+                margin-left: -8px;
+                margin-right: -8px;
+            }
+
+            .col, [class*="col-"] {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            /* Navbar */
+            .navbar {
+                padding: 0.5rem 0 !important;
+            }
+
+            .navbar-brand {
+                padding: 0;
+            }
+
+            /* Mobile menu expanded state */
+            .navbar-collapse {
+                margin-top: 0.5rem;
+                border-top: 2px solid #ff9800;
+                background-color: #1f1f1f;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            .main-menu {
+                padding: 0.5rem 0;
             }
 
             .main-menu .nav-link {
-                padding: 0.8rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.95rem;
+                border-bottom: 1px solid #333;
+                display: block;
             }
 
-            .container {
-                padding-left: 10px;
-                padding-right: 10px;
+            .main-menu .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            .main-menu .nav-item {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                background-color: #2a2a2a !important;
+                border: none;
+                border-radius: 0;
+                padding-left: 1rem;
+            }
+
+            .dropdown-item {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.85rem;
+            }
+
+            .dropdown-divider {
+                margin: 0.3rem 0;
+            }
+
+            /* Search Bar */
+            .form-control {
+                min-width: 150px !important;
+                max-width: 200px !important;
+                font-size: 0.85rem;
             }
 
             .d-flex.gap-3 {
                 gap: 0.5rem !important;
             }
 
-            .btn-primary {
-                padding: 0.25rem 0.75rem;
-                font-size: 0.8rem;
+            /* Cards */
+            .card-article {
+                margin-bottom: 1rem;
+            }
+
+            .card-article img {
+                height: 160px;
+            }
+
+            .card-body {
+                padding: 0.75rem !important;
+            }
+
+            .card-title {
+                font-size: 1rem !important;
+                line-height: 1.4;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-text {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            /* Article Meta */
+            .article-meta {
+                font-size: 0.75rem !important;
+            }
+
+            .category-badge {
+                font-size: 0.65rem !important;
+                padding: 3px 8px;
+            }
+
+            .featured-badge {
+                font-size: 0.65rem !important;
+                padding: 3px 10px;
+            }
+
+            /* Trending Section */
+            .trending-number {
+                font-size: 1.8rem !important;
+                min-width: 35px;
+            }
+
+            .trending-item {
+                padding-left: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .trending-item h6 {
+                font-size: 0.9rem;
+            }
+
+            /* Buttons */
+            .btn {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .btn-sm {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 0 1rem !important;
+            }
+
+            footer .col-md-4 {
+                margin-bottom: 1.5rem !important;
+            }
+
+            footer h5, footer h6 {
+                font-size: 1rem;
+            }
+
+            footer .fs-4 {
+                font-size: 1.5rem !important;
+            }
+
+            /* Margins & Padding */
+            .mt-4, .my-4 {
+                margin-top: 1.5rem !important;
+            }
+
+            .mb-4, .my-4 {
+                margin-bottom: 1.5rem !important;
+            }
+
+            .pt-4, .py-4 {
+                padding-top: 1.5rem !important;
+            }
+
+            .pb-4, .py-4 {
+                padding-bottom: 1.5rem !important;
+            }
+
+            /* Hide unnecessary elements on mobile */
+            .d-none-mobile {
+                display: none !important;
             }
         }
 
-        @media (max-width: 576px) {
+        /* ========================================
+           TABLETS (576px - 991px)
+           ======================================== */
+        @media (min-width: 576px) and (max-width: 991.98px) {
+            /* Typography */
+            .navbar-brand {
+                font-size: 1.3rem !important;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            /* Container */
+            .container {
+                max-width: 720px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            /* Navbar */
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-collapse {
+                margin-top: 0.5rem;
+            }
+
+            .main-menu .nav-link {
+                padding: 0.85rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Cards */
+            .card-article img {
+                height: 200px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            /* Grid Layout - 2 columns */
+            .col-md-6 .card-article img {
+                height: 180px;
+            }
+
+            /* Trending */
+            .trending-number {
+                font-size: 2.2rem;
+                min-width: 45px;
+            }
+
+            /* Search Bar */
+            .form-control {
+                max-width: 280px !important;
+            }
+
+            /* Footer */
+            footer .col-md-4 {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* ========================================
+           SMALL DESKTOPS (992px - 1199px)
+           ======================================== */
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+            /* Container */
+            .container {
+                max-width: 960px;
+            }
+
+            /* Navbar */
+            .main-menu .nav-link {
+                padding: 1rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            /* Cards */
+            .card-article img {
+                height: 200px;
+            }
+
+            .col-lg-3 .card-article img {
+                height: 160px;
+            }
+
+            .col-lg-4 .card-article img {
+                height: 180px;
+            }
+
+            /* Typography */
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .card-title {
+                font-size: 1.05rem;
+            }
+
+            /* Search */
+            .form-control {
+                max-width: 300px !important;
+            }
+        }
+
+        /* ========================================
+           LARGE DESKTOPS (1200px+)
+           ======================================== */
+        @media (min-width: 1200px) {
+            /* Container */
+            .container {
+                max-width: 1200px;
+            }
+
+            /* Navbar */
+            .main-menu .nav-link {
+                padding: 1rem 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            /* Cards */
+            .card-article img {
+                height: 220px;
+            }
+
+            .col-lg-3 .card-article img {
+                height: 180px;
+            }
+
+            .col-lg-4 .card-article img {
+                height: 200px;
+            }
+
+            /* Typography */
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            /* Search */
+            .form-control {
+                max-width: 350px !important;
+            }
+
+            /* Hover Effects - Only on Desktop */
+            .card-article:hover {
+                transform: translateY(-5px);
+            }
+
+            .main-menu .nav-link:hover {
+                background-color: #333;
+            }
+        }
+
+        /* ========================================
+           EXTRA LARGE DESKTOPS (1400px+)
+           ======================================== */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1320px;
+            }
+
+            .card-article img {
+                height: 240px;
+            }
+
+            .col-lg-3 .card-article img {
+                height: 200px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* ========================================
+           LANDSCAPE ORIENTATION (Tablets & Phones)
+           ======================================== */
+        @media (max-width: 991.98px) and (orientation: landscape) {
             .card-article img {
                 height: 150px;
             }
 
-            .section-title {
-                font-size: 1.3rem;
+            .navbar {
+                padding: 0.25rem 0 !important;
+            }
+
+            .main-menu .nav-link {
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        /* ========================================
+           PRINT STYLES
+           ======================================== */
+        @media print {
+            .navbar,
+            footer,
+            .btn,
+            #themeToggle {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .card-article {
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -352,9 +845,6 @@
     {{-- Main Menu Navbar --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 sticky-top" style="border-top: 1px solid #333;">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto main-menu">
                     <li class="nav-item">
@@ -382,14 +872,23 @@
                         $category = $mainCategories->firstWhere('name', $menuName);
                         @endphp
                         <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ $category ? route('category.show', $category->slug) : '#' }}" 
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                               role="button" 
+                               data-bs-toggle="dropdown" 
+                               aria-expanded="false"
+                               onclick="toggleDropdown(event, this)">
                                 {{ $menuName }}
                                 @if(isset($menuData['badge']))
                                 <span class="badge bg-danger ms-1" style="font-size: 0.6rem;">{{ $menuData['badge'] }}</span>
                                 @endif
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
+                                <li>
+                                    <a class="dropdown-item" href="{{ $category ? route('category.show', $category->slug) : '#' }}">
+                                        <i class="bi bi-folder"></i> Semua {{ $menuName }}
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" style="border-color: #444;"></li>
                                 @foreach($menuData['tags'] as $tagName)
                                 <li>
                                     @php
@@ -405,6 +904,9 @@
                     @endforeach
                 </ul>
             </div>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </nav>
 
@@ -454,6 +956,64 @@
 
     {{-- Bootstrap 5 JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {{-- Dropdown Toggle Script --}}
+    <script>
+        // Toggle dropdown on click
+        function toggleDropdown(event, element) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const parentLi = element.closest('.nav-item');
+            const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.nav-item.show').forEach(item => {
+                if (item !== parentLi) {
+                    item.classList.remove('show');
+                    item.querySelector('.dropdown-menu')?.classList.remove('show');
+                }
+            });
+            
+            // Toggle current dropdown
+            parentLi.classList.toggle('show');
+            dropdownMenu?.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-item')) {
+                document.querySelectorAll('.nav-item.show').forEach(item => {
+                    item.classList.remove('show');
+                    item.querySelector('.dropdown-menu')?.classList.remove('show');
+                });
+            }
+        });
+
+        // On desktop, use hover instead of click
+        if (window.innerWidth >= 992) {
+            document.querySelectorAll('.mega-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function() {
+                    this.classList.add('show');
+                    this.querySelector('.dropdown-menu')?.classList.add('show');
+                });
+                
+                dropdown.addEventListener('mouseleave', function() {
+                    this.classList.remove('show');
+                    this.querySelector('.dropdown-menu')?.classList.remove('show');
+                });
+            });
+        }
+
+        // Re-initialize on window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                location.reload();
+            }, 500);
+        });
+    </script>
     
     {{-- Dark Mode Toggle Script --}}
     <script>

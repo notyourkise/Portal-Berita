@@ -23,10 +23,7 @@
             @foreach($articles as $article)
             <div class="col-md-4">
                 <div class="card card-article h-100">
-                    <img src="{{ $article->cover_image_url ?? 'https://via.placeholder.com/400x250' }}" 
-                         class="card-img-top" 
-                         style="height: 200px; object-fit: cover;" 
-                         alt="{{ $article->title }}">
+                    {!! article_cover($article, 'medium', 'card-img-top') !!}
                     <div class="card-body">
                         <span class="category-badge mb-2">{{ $article->category->name }}</span>
                         <h5 class="card-title fw-bold">

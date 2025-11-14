@@ -50,9 +50,7 @@
                 {{-- Cover Image --}}
                 @if($article->cover_image)
                 <div class="mb-4">
-                    <img src="{{ $article->cover_image_url }}" 
-                         alt="{{ $article->title }}" 
-                         class="img-fluid rounded w-100">
+                    {!! article_cover($article, 'large', 'img-fluid rounded w-100') !!}
                 </div>
                 @endif
 
@@ -161,10 +159,7 @@
                             <div class="card card-article h-100">
                                 <div class="row g-0">
                                     <div class="col-4">
-                                        <img src="{{ $related->cover_image_url ?? 'https://via.placeholder.com/150x100' }}" 
-                                             class="img-fluid rounded-start h-100" 
-                                             style="object-fit: cover;" 
-                                             alt="{{ $related->title }}">
+                                        {!! article_cover($related, 'thumbnail', 'img-fluid rounded-start h-100') !!}
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body p-2">
@@ -249,6 +244,8 @@ function copyToClipboard() {
 
 @push('styles')
 <style>
+/* Article Detail Page Responsive Styles */
+
 .article-body {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -269,6 +266,192 @@ function copyToClipboard() {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: bold;
+}
+
+/* Sidebar sticky positioning */
+.position-sticky {
+    top: 100px;
+}
+
+/* Mobile (up to 575px) */
+@media (max-width: 575.98px) {
+    article.py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    h1.fw-bold {
+        font-size: 1.5rem !important;
+        line-height: 1.3;
+    }
+
+    .lead {
+        font-size: 1rem !important;
+    }
+
+    .article-meta {
+        font-size: 0.8rem;
+    }
+
+    .article-meta .me-4 {
+        margin-right: 0.75rem !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .article-body {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .article-body h2 {
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+    }
+
+    .article-body h3 {
+        font-size: 1.1rem;
+        margin-top: 1.2rem;
+    }
+
+    .article-body img {
+        margin: 15px 0;
+        border-radius: 4px;
+    }
+
+    /* Share buttons stack vertically on very small screens */
+    .d-flex.gap-2 {
+        flex-wrap: wrap;
+        gap: 0.5rem !important;
+    }
+
+    .d-flex.gap-2 .btn {
+        flex: 0 0 calc(50% - 0.25rem);
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    /* Pagination buttons smaller */
+    .pagination {
+        font-size: 0.85rem;
+    }
+
+    .pagination .page-link {
+        padding: 0.4rem 0.6rem;
+    }
+
+    /* Related articles full width */
+    .col-md-6 {
+        margin-bottom: 1rem;
+    }
+
+    /* Sidebar not sticky on mobile */
+    .position-sticky {
+        position: static !important;
+        margin-top: 2rem;
+    }
+
+    .card.mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .list-group-item h6 {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablets Portrait (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    h1.fw-bold {
+        font-size: 1.8rem;
+    }
+
+    .article-body {
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+    .d-flex.gap-2 .btn {
+        font-size: 0.9rem;
+    }
+
+    /* Related articles 2 columns */
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .position-sticky {
+        position: static !important;
+        margin-top: 2rem;
+    }
+}
+
+/* Tablets Landscape (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    h1.fw-bold {
+        font-size: 2rem;
+    }
+
+    .article-body {
+        font-size: 1.08rem;
+    }
+
+    /* Sidebar still not sticky */
+    .position-sticky {
+        position: static !important;
+        margin-top: 2.5rem;
+    }
+}
+
+/* Small Desktops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    h1.fw-bold {
+        font-size: 2.2rem;
+    }
+
+    .article-body {
+        font-size: 1.1rem;
+    }
+
+    /* Sidebar sticky from this breakpoint */
+    .position-sticky {
+        top: 80px;
+    }
+}
+
+/* Large Desktops (1200px+) */
+@media (min-width: 1200px) {
+    h1.fw-bold {
+        font-size: 2.5rem;
+    }
+
+    .article-body {
+        font-size: 1.15rem;
+        line-height: 1.9;
+    }
+
+    .position-sticky {
+        top: 100px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .position-sticky,
+    .card.mb-4:last-child,
+    .card.bg-light,
+    .pagination {
+        display: none !important;
+    }
+
+    .article-body {
+        font-size: 12pt;
+        line-height: 1.6;
+    }
+
+    h1.fw-bold {
+        font-size: 18pt;
+    }
 }
 </style>
 @endpush
