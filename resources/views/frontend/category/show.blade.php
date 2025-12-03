@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent">
-                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-outline-warning btn-sm w-100">
+                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-sm w-100" style="background-color: #fcdd01; color: #214594; border: 1px solid #fcdd01;">
                             Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -58,7 +58,7 @@
             <i class="bi bi-inbox" style="font-size: 4rem; color: #ccc;"></i>
             <h3 class="mt-3 text-muted">Belum Ada Artikel</h3>
             <p class="text-muted">Kategori ini belum memiliki artikel yang dipublikasikan.</p>
-            <a href="{{ route('home') }}" class="btn btn-warning">
+            <a href="{{ route('home') }}" class="btn" style="background-color: #fcdd01; color: #214594;">
                 <i class="bi bi-house"></i> Kembali ke Beranda
             </a>
         </div>
@@ -85,7 +85,7 @@ $otherCategories = \App\Models\Category::where('is_active', true)
                 <a href="{{ route('category.show', $cat->slug) }}" class="text-decoration-none">
                     <div class="card card-article text-center h-100">
                         <div class="card-body">
-                            <i class="bi bi-folder2-open" style="font-size: 2rem; color: #ff9800;"></i>
+                            <i class="bi bi-folder2-open" style="font-size: 2rem; color: #fcdd01;"></i>
                             <h6 class="mt-2 mb-1 fw-bold text-dark">{{ $cat->name }}</h6>
                             <small class="text-muted">{{ $cat->articles()->published()->count() }} artikel</small>
                         </div>

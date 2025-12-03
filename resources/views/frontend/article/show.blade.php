@@ -23,7 +23,7 @@
                     <div class="article-meta mb-4 pb-3 border-bottom">
                         <div class="d-flex align-items-center flex-wrap">
                             <div class="me-4 mb-2">
-                                <i class="bi bi-person-circle text-warning me-1"></i>
+                                <i class="bi bi-person-circle me-1" style="color: #214594;"></i>
                                 <strong>{{ $article->author->name }}</strong>
                             </div>
                             <div class="me-4 mb-2">
@@ -216,7 +216,7 @@
                                 <a href="{{ route('category.show', $cat->slug) }}" 
                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                     {{ $cat->name }}
-                                    <span class="badge bg-warning rounded-pill">{{ $cat->articles()->published()->count() }}</span>
+                                    <span class="badge rounded-pill" style="background-color: #fcdd01; color: #214594;">{{ $cat->articles()->published()->count() }}</span>
                                 </a>
                                 @endforeach
                             </div>

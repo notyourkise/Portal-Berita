@@ -449,7 +449,7 @@
 /* Focus visible for keyboard navigation */
 @media (prefers-reduced-motion: no-preference) {
     *:focus-visible {
-        outline: 2px solid #ff9800;
+        outline: 2px solid #fcdd01;
         outline-offset: 2px;
     }
 }

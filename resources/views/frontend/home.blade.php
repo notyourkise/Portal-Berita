@@ -23,7 +23,7 @@
                                 <div class="position-relative headline-image">
                                     {!! article_cover($headline, 'large', 'card-img-top w-100') !!}
                                     <div class="position-absolute top-0 start-0 m-2 m-md-3">
-                                        <span class="badge bg-danger px-2 py-1 px-md-3 py-md-2">
+                                        <span class="badge px-2 py-1 px-md-3 py-md-2" style="background-color: #fcdd01; color: #214594;">
                                             <i class="bi bi-star-fill"></i> Headline
                                         </span>
                                     </div>
@@ -111,7 +111,7 @@
             {{-- Sidebar: Hot Topics (4 columns) --}}
             <div class="col-lg-4">
                 <div class="card border-0 shadow-sm sticky-top hot-topics-card">
-                    <div class="card-header bg-danger text-white border-0 py-2">
+                    <div class="card-header text-white border-0 py-2" style="background-color: #214594;">
                         <h6 class="mb-0 fw-bold">
                             <i class="bi bi-fire"></i> Hot Topics
                         </h6>
@@ -120,7 +120,7 @@
                         <div class="list-group list-group-flush">
                             @foreach($hotTopics as $topic)
                             <a href="{{ route('tag.show', $topic->slug) }}" class="list-group-item list-group-item-action d-flex align-items-center py-2">
-                                <span class="badge bg-danger rounded-circle me-2 hot-topic-number">
+                                <span class="badge rounded-circle me-2 hot-topic-number" style="background-color: #fcdd01; color: #214594;">
                                     {{ $loop->iteration }}
                                 </span>
                                 <div class="flex-grow-1">
@@ -150,7 +150,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mb-md-4">
             <h2 class="section-title mb-0">{{ $category->name }}</h2>
-            <a href="{{ route('category.show', $category->slug) }}" class="btn btn-outline-warning btn-sm">
+            <a href="{{ route('category.show', $category->slug) }}" class="btn btn-sm" style="background-color: #fcdd01; color: #214594; border-color: #fcdd01;">
                 Lihat Semua <i class="bi bi-arrow-right"></i>
             </a>
         </div>

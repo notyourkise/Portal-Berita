@@ -27,8 +27,27 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->loginRouteSlug('login')
+            ->passwordReset(false)
+            ->emailVerification(false)
+            ->brandName('SALUT UT Samarinda')
+            ->brandLogo(asset('LOGO_SALUT_.png'))
+            ->brandLogoHeight('3rem')
+            ->favicon(asset('logo-ut.svg'))
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => '#eff6ff',
+                    100 => '#dbeafe',
+                    200 => '#bfdbfe',
+                    300 => '#93c5fd',
+                    400 => '#60a5fa',
+                    500 => '#214594',
+                    600 => '#1e3f85',
+                    700 => '#1a3670',
+                    800 => '#162d5c',
+                    900 => '#0f1f3d',
+                    950 => '#0a1628',
+                ],
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

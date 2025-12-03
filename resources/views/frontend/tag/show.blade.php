@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent">
-                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-outline-warning btn-sm w-100">
+                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-sm w-100" style="background-color: #fcdd01; color: #214594; border: 1px solid #fcdd01;">
                             Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -59,7 +59,7 @@
             <i class="bi bi-tag" style="font-size: 4rem; color: #ccc;"></i>
             <h3 class="mt-3 text-muted">Belum Ada Artikel</h3>
             <p class="text-muted">Tag ini belum memiliki artikel yang dipublikasikan.</p>
-            <a href="{{ route('home') }}" class="btn btn-warning">
+            <a href="{{ route('home') }}" class="btn" style="background-color: #fcdd01; color: #214594;">
                 <i class="bi bi-house"></i> Kembali ke Beranda
             </a>
         </div>
@@ -88,7 +88,8 @@ $popularTags = \App\Models\Tag::withCount(['articles' => function($q) {
         <div class="d-flex flex-wrap justify-content-center gap-2">
             @foreach($popularTags as $popularTag)
             <a href="{{ route('tag.show', $popularTag->slug) }}" 
-               class="badge {{ $popularTag->id == $tag->id ? 'bg-warning text-dark' : 'bg-secondary' }} text-decoration-none px-3 py-2">
+               class="badge {{ $popularTag->id == $tag->id ? 'text-decoration-none px-3 py-2' : 'bg-secondary text-decoration-none px-3 py-2' }}" 
+               style="{{ $popularTag->id == $tag->id ? 'background-color: #fcdd01; color: #214594;' : '' }}">
                 {{ $popularTag->name }}
                 <span class="badge bg-dark ms-1">{{ $popularTag->articles_count }}</span>
             </a>

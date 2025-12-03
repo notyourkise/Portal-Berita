@@ -6,19 +6,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     {{-- SEO Meta Tags --}}
-    <title>@yield('title', 'Portal Berita - Berita Terkini Indonesia')</title>
-    <meta name="description" content="@yield('meta_description', 'Portal berita terkini Indonesia dengan informasi politik, ekonomi, olahraga, teknologi, dan hiburan')">
-    <meta name="keywords" content="@yield('meta_keywords', 'berita, news, indonesia, politik, ekonomi, olahraga')">
+    <title>@yield('title', 'SALUT UT Samarinda - Sentra Layanan Universitas Terbuka')</title>
+    <meta name="description" content="@yield('meta_description', 'SALUT UT Samarinda adalah Sentra Layanan Universitas Terbuka di Samarinda yang memberikan layanan akademik, pendampingan belajar, dan informasi pendidikan untuk mahasiswa UT')">
+    <meta name="keywords" content="@yield('meta_keywords', 'SALUT, Universitas Terbuka, UT Samarinda, kuliah online, pendaftaran mahasiswa, tutorial online, layanan akademik')">
     
     {{-- Open Graph --}}
-    <meta property="og:title" content="@yield('og_title', 'Portal Berita')">
-    <meta property="og:description" content="@yield('og_description', 'Berita Terkini Indonesia')">
-    <meta property="og:image" content="@yield('og_image', asset('images/og-default.jpg'))">
+    <meta property="og:title" content="@yield('og_title', 'SALUT UT Samarinda')">
+    <meta property="og:description" content="@yield('og_description', 'Sentra Layanan Universitas Terbuka Samarinda')">
+    <meta property="og:image" content="@yield('og_image', asset('LOGO_SALUT_.png'))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="@yield('og_type', 'website')">
     
+    {{-- Favicon - Using SVG logo UT --}}
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo-ut.svg') }}?v={{ time() }}">
+    <link rel="alternate icon" type="image/png" href="{{ asset('LOGO_SALUT_.png') }}?v={{ time() }}">
+    <link rel="apple-touch-icon" href="{{ asset('LOGO_SALUT_.png') }}?v={{ time() }}">
+    
     {{-- RSS Feed --}}
-    <link rel="alternate" type="application/rss+xml" title="Portal Berita RSS Feed" href="{{ route('rss') }}">
+    <link rel="alternate" type="application/rss+xml" title="SALUT UT Samarinda RSS Feed" href="{{ route('rss') }}">
     
     {{-- Bootstrap 5 CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -84,7 +89,7 @@
 
         body.dark-mode .list-group-item:hover {
             background-color: #333;
-            color: #ff9800;
+            color: #fcdd01;
         }
 
         body.dark-mode .text-dark {
@@ -96,13 +101,18 @@
         }
 
         body.dark-mode .badge.bg-warning {
-            background-color: #ff9800 !important;
+            background-color: #fcdd01 !important;
             color: #000 !important;
         }
 
-        /* Navbar tetap hitam di semua mode */
-        .navbar-dark, .bg-dark {
-            background-color: #1f1f1f !important;
+        /* Top navbar with white background */
+        .navbar-light.bg-white {
+            background-color: #ffffff !important;
+        }
+
+        /* Menu navbar with blue background */
+        .navbar-dark {
+            background-color: #214594 !important;
         }
         
         /* Container fix */
@@ -118,27 +128,37 @@
             font-size: 1.5rem;
         }
 
+        .navbar-brand img {
+            height: 35px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+
         /* Hamburger Menu - Positioned Right */
         .navbar-toggler {
-            border: 2px solid #ff9800;
+            border: 2px solid #fcdd01;
             padding: 0.5rem 0.75rem;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
 
         .navbar-toggler:hover {
-            background-color: #ff9800;
-            border-color: #ff9800;
+            background-color: #fcdd01;
+            border-color: #fcdd01;
         }
 
         .navbar-toggler:focus {
-            box-shadow: 0 0 0 0.25rem rgba(255, 152, 0, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(252, 221, 1, 0.25);
         }
 
         .navbar-toggler-icon {
             width: 1.5rem;
             height: 1.5rem;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 152, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28252, 221, 1, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         .navbar-toggler:hover .navbar-toggler-icon {
@@ -152,22 +172,115 @@
             color: #fff !important;
             transition: all 0.3s ease;
             position: relative;
+            text-decoration: none;
+        }
+
+        .main-menu .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 8px;
+            left: 50%;
+            background-color: #fcdd01;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         .main-menu .nav-link:hover {
-            background-color: #333;
-            color: #ff9800 !important;
+            color: #fcdd01 !important;
+        }
+
+        .main-menu .nav-link:hover::after {
+            width: 80%;
         }
 
         .main-menu .nav-link.active {
-            background-color: #ff9800;
-            color: #000 !important;
+            color: #fcdd01 !important;
             font-weight: 600;
+        }
+
+        .main-menu .nav-link.active::after {
+            width: 80%;
         }
 
         /* Dropdown Menu Styling */
         .mega-dropdown {
             position: relative;
+        }
+
+        .mega-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: auto;
+            min-width: 800px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            padding: 2rem;
+            display: none;
+            z-index: 10000;
+            margin-top: 0;
+        }
+
+        .mega-dropdown:hover .mega-dropdown-menu {
+            display: block;
+        }
+
+        .mega-dropdown-menu .mega-section {
+            padding: 1rem;
+        }
+
+        .mega-dropdown-menu .mega-image {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .mega-dropdown-menu .mega-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mega-dropdown-menu h5 {
+            color: #214594;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mega-dropdown-menu .mega-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mega-dropdown-menu .mega-link:last-child {
+            border-bottom: none;
+        }
+
+        .mega-dropdown-menu .mega-link:hover {
+            color: #214594;
+            padding-left: 10px;
+        }
+
+        .mega-dropdown-menu .mega-link i {
+            font-size: 1.5rem;
+            color: #214594;
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .mega-dropdown-menu .mega-link:hover i {
+            color: #fcdd01;
         }
 
         /* Desktop: hover to show */
@@ -200,7 +313,7 @@
         }
 
         .dropdown-menu-dark {
-            background-color: #1a1a1a;
+            background-color: #214594;
             border: none;
             border-radius: 0;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -221,14 +334,14 @@
         }
 
         .dropdown-menu-dark .dropdown-item:hover {
-            background-color: #333;
-            color: #ff9800;
+            background-color: #1a3670;
+            color: #fcdd01;
             padding-left: 2rem;
         }
 
         .dropdown-menu-dark .dropdown-item i {
             margin-right: 0.5rem;
-            color: #ff9800;
+            color: #fcdd01;
         }
 
         /* Dropdown arrow animation */
@@ -242,14 +355,61 @@
 
         /* Search Bar */
         .form-control:focus {
-            border-color: #ff9800;
-            box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+            border-color: #fcdd01;
+            box-shadow: 0 0 0 0.2rem rgba(252, 221, 1, 0.25);
+        }
+
+        /* Override Bootstrap warning colors */
+        .btn-warning {
+            background-color: #fcdd01 !important;
+            border-color: #fcdd01 !important;
+            color: #214594 !important;
+        }
+
+        .btn-warning:hover {
+            background-color: #e5c801 !important;
+            border-color: #e5c801 !important;
+            color: #214594 !important;
+        }
+
+        .btn-outline-warning {
+            border-color: #fcdd01 !important;
+            color: #fcdd01 !important;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #fcdd01 !important;
+            border-color: #fcdd01 !important;
+            color: #214594 !important;
+        }
+
+        .bg-warning {
+            background-color: #fcdd01 !important;
+            color: #214594 !important;
+        }
+
+        .text-warning {
+            color: #fcdd01 !important;
+        }
+
+        .badge.bg-warning {
+            background-color: #fcdd01 !important;
+            color: #214594 !important;
+        }
+
+        .bg-danger {
+            background-color: #214594 !important;
+        }
+
+        .badge.bg-danger {
+            background-color: #214594 !important;
+            color: #fcdd01 !important;
         }
         
         /* Featured Badge */
         .featured-badge {
-            background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
-            color: white;
+            background: linear-gradient(135deg, #fcdd01 0%, #f5c100 100%);
+            color: #214594;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -293,8 +453,8 @@
         .category-badge {
             display: inline-block;
             align-self: flex-start;
-            background: #f59e0b;
-            color: white;
+            background: #fcdd01;
+            color: #214594;
             padding: 4px 10px;
             border-radius: 4px;
             font-size: 0.75rem;
@@ -323,11 +483,11 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: #d97706;
+            background: #fcdd01;
         }
         
         .trending-item {
-            border-left: 3px solid #d97706;
+            border-left: 3px solid #fcdd01;
             padding-left: 1rem;
             margin-bottom: 1rem;
         }
@@ -335,7 +495,7 @@
         .trending-number {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ff9800, #ff5722);
+            background: linear-gradient(135deg, #fcdd01, #214594);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -360,7 +520,7 @@
         }
         
         footer a:hover {
-            color: #d97706;
+            color: #fcdd01;
         }
 
         /* ========================================
@@ -379,8 +539,8 @@
            ======================================== */
         @media (max-width: 575.98px) {
             /* Typography */
-            .navbar-brand {
-                font-size: 1.1rem !important;
+            .navbar-brand img {
+                height: 28px !important;
             }
 
             /* Hamburger menu mobile */
@@ -443,8 +603,7 @@
             /* Mobile menu expanded state */
             .navbar-collapse {
                 margin-top: 0.5rem;
-                border-top: 2px solid #ff9800;
-                background-color: #1f1f1f;
+                background-color: #214594;
                 border-radius: 0 0 8px 8px;
                 box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             }
@@ -605,8 +764,8 @@
            ======================================== */
         @media (min-width: 576px) and (max-width: 991.98px) {
             /* Typography */
-            .navbar-brand {
-                font-size: 1.3rem !important;
+            .navbar-brand img {
+                height: 30px !important;
             }
 
             .section-title {
@@ -823,19 +982,19 @@
 </head>
 <body>
     {{-- Top Navbar (Header) --}}
-    <nav class="navbar navbar-dark bg-dark py-2">
+    <nav class="navbar navbar-light bg-white py-2" style="border-bottom: 2px solid #fcdd01;">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ route('home') }}" style="font-size: 1.5rem;">
-                <span style="color: #fff;">PORTAL</span><span style="color: #ff9800;">.com</span>
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('LOGO_SALUT_.png') }}" alt="SALUT Logo">
             </a>
             <div class="d-flex align-items-center gap-3">
                 <form action="{{ route('search') }}" method="GET" class="d-flex">
-                    <input class="form-control form-control-sm" type="search" name="q" placeholder="Cari tokoh, topik atau peristiwa" value="{{ request('q') }}" style="max-width: 350px; min-width: 200px; width: 100%; border-radius: 20px;">
-                    <button class="btn btn-link text-white" type="submit" style="margin-left: -40px;">
+                    <input class="form-control form-control-sm" type="search" name="q" placeholder="Cari tokoh, topik atau peristiwa" value="{{ request('q') }}" style="max-width: 450px; min-width: 300px; width: 100%; border-radius: 20px;">
+                    <button class="btn btn-link" type="submit" style="margin-left: -40px; color: #214594;">
                         <i class="bi bi-search"></i>
                     </button>
                 </form>
-                <button id="themeToggle" class="btn btn-link text-white p-0" style="font-size: 1.3rem;">
+                <button id="themeToggle" class="btn btn-link p-0" style="font-size: 1.3rem; color: #214594;">
                     <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
                 </button>
             </div>
@@ -843,65 +1002,342 @@
     </nav>
 
     {{-- Main Menu Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 sticky-top" style="border-top: 1px solid #333;">
+    <nav class="navbar navbar-expand-lg navbar-dark py-0 sticky-top" style="background-color: #214594; z-index: 1030;">
         <div class="container">
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto main-menu">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">News</a>
+                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                     </li>
-                    
-                    @php
-                    $mainCategories = \App\Models\Category::where('is_active', true)->orderBy('order')->get();
-                    
-                    // Menu structure dengan subcategories (tags) - Dikurangi dan diubah namanya
-                    $menuStructure = [
-                        'Politik' => ['tags' => ['Nasional', 'Daerah', 'Pemilu', 'Pemerintahan']],
-                        'Ekonomi' => ['tags' => ['Bisnis', 'Keuangan', 'Pasar Modal', 'UMKM'], 'badge' => 'HOT'],
-                        'Teknologi' => ['tags' => ['Digital', 'Gadget', 'Startup', 'Inovasi']],
-                        'Olahraga' => ['tags' => ['Sepakbola', 'Basket', 'Tenis', 'Bulutangkis', 'MotoGP']],
-                        'Hiburan' => ['tags' => ['Film', 'Musik', 'Selebriti', 'K-Pop']],
-                        'Gaya Hidup' => ['tags' => ['Fashion', 'Kuliner', 'Wisata', 'Otomotif']],
-                        'Kesehatan' => ['tags' => ['Tips Sehat', 'Nutrisi', 'Olahraga', 'Mental']],
-                        'Pendidikan' => ['tags' => ['Sekolah', 'Universitas', 'Beasiswa', 'Tips Belajar']],
-                    ];
-                    @endphp
-
-                    @foreach($menuStructure as $menuName => $menuData)
-                        @php
-                        $category = $mainCategories->firstWhere('name', $menuName);
-                        @endphp
-                        <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" 
-                               role="button" 
-                               data-bs-toggle="dropdown" 
-                               aria-expanded="false"
-                               onclick="toggleDropdown(event, this)">
-                                {{ $menuName }}
-                                @if(isset($menuData['badge']))
-                                <span class="badge bg-danger ms-1" style="font-size: 0.6rem;">{{ $menuData['badge'] }}</span>
-                                @endif
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li>
-                                    <a class="dropdown-item" href="{{ $category ? route('category.show', $category->slug) : '#' }}">
-                                        <i class="bi bi-folder"></i> Semua {{ $menuName }}
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider" style="border-color: #444;"></li>
-                                @foreach($menuData['tags'] as $tagName)
-                                <li>
-                                    @php
-                                    $tag = \App\Models\Tag::where('name', $tagName)->first();
-                                    @endphp
-                                    <a class="dropdown-item" href="{{ $tag ? route('tag.show', $tag->slug) : '#' }}">
-                                        {{ $tagName }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    @endforeach
+                    <li class="nav-item mega-dropdown">
+                        <a class="nav-link" href="#">
+                            Profil <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="mega-section mega-image">
+                                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600" alt="Universitas Terbuka">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="mega-section">
+                                        <h5>Universitas Terbuka Jakarta</h5>
+                                        <p class="small text-muted mb-3">Perguruan Tinggi Negeri Terjangkau & Terakreditasi A oleh BAN-PT</p>
+                                        <div class="mega-links">
+                                            <a href="#" class="mega-link">
+                                                <i class="bi bi-person-circle"></i>
+                                                <span>Direktur</span>
+                                            </a>
+                                            <a href="#" class="mega-link">
+                                                <i class="bi bi-people"></i>
+                                                <span>Manajer Tata Usaha</span>
+                                            </a>
+                                            <a href="#" class="mega-link">
+                                                <i class="bi bi-megaphone"></i>
+                                                <span>Manajer Marketing dan Registrasi</span>
+                                            </a>
+                                            <a href="#" class="mega-link">
+                                                <i class="bi bi-book"></i>
+                                                <span>Manajer Pembelajaran dan Ujian</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="d-flex gap-3">
+                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                            <i class="bi bi-archive"></i>
+                                            <span>Visi dan Misi</span>
+                                        </a>
+                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                            <i class="bi bi-diagram-3"></i>
+                                            <span>Struktur Organisasi</span>
+                                        </a>
+                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                            <i class="bi bi-building"></i>
+                                            <span>UT Pusat</span>
+                                        </a>
+                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                            <i class="bi bi-award"></i>
+                                            <span>Akreditasi Universitas</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mega-dropdown">
+                        <a class="nav-link" href="#">
+                            Akademik <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu" style="min-width: 900px;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Program Studi</h6>
+                                        <a href="#" class="btn btn-primary w-100 mb-2" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-mortarboard me-2"></i> Diploma (D3 & D4) - 2 Program
+                                        </a>
+                                        <a href="#" class="btn btn-primary w-100 mb-2" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-book me-2"></i> Sarjana (S1) - 36 Program
+                                        </a>
+                                        <a href="#" class="btn btn-primary w-100 mb-2" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-journal-text me-2"></i> Magister (S2) - 9 Program
+                                        </a>
+                                        <a href="#" class="btn btn-primary w-100 mb-2" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-mortarboard-fill me-2"></i> Doktoral (S3) - 2 Program
+                                        </a>
+                                        <a href="#" class="btn btn-primary w-100 mb-2" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-person-workspace me-2"></i> Program Profesi - Pendidikan Profesi Guru
+                                        </a>
+                                        <a href="#" class="btn btn-primary w-100" style="background-color: #214594; border: none; text-align: left; padding: 0.75rem 1rem;">
+                                            <i class="bi bi-award me-2"></i> Program Sertifikat (MOOCs, BIPA, PMKM)
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Fakultas</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-building"></i>
+                                            <span>Fakultas Keguruan dan Ilmu Pendidikan (FKIP)</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-building"></i>
+                                            <span>Fakultas Ekonomi dan Bisnis (FEB)</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-building"></i>
+                                            <span>Fakultas Sains dan Teknologi (FST)</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-building"></i>
+                                            <span>Fakultas Hukum, Ilmu Sosial dan Ilmu Politik (FHISIP)</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-building"></i>
+                                            <span>Sekolah Pascasarjana (SPs)</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Layanan Akademik</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-calendar-event"></i>
+                                            <span>Kalender Akademik</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-book"></i>
+                                            <span>Katalog Digital</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-pencil-square"></i>
+                                            <span>Akreditasi Program Studi</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-file-earmark-text"></i>
+                                            <span>Legalisir Ijazah Online</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-clipboard-check"></i>
+                                            <span>Surat Keterangan Online</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mega-dropdown">
+                        <a class="nav-link" href="#">
+                            Mahasiswa <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu" style="min-width: 900px;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Portal Mahasiswa</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-tv"></i>
+                                            <span>Tutorial Online</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-person-badge"></i>
+                                            <span>MyUT</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-book"></i>
+                                            <span>Ruang Baca Virtual</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-bookmark"></i>
+                                            <span>KIT-Mahasiswa</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-journal-bookmark"></i>
+                                            <span>Katalog</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-calendar-event"></i>
+                                            <span>Kalender-Akademik</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-truck"></i>
+                                            <span>Tracking Bahan Ajar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Website UT</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>Jadwal Tutorial Mahasiswa</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>ecampus.ut.ac.id</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>silayar.ut.ac.id</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>praktik.ut.ac.id</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>the.ut.ac.id</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>suo.ut.ac.id</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>Skema Ujian Akhir Mahasiswa</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-laptop"></i>
+                                            <span>Cetak KTPU Numpang Ujian</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Layanan Lainnya</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-credit-card"></i>
+                                            <span>Biaya Pendidikan</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-file-earmark-text"></i>
+                                            <span>Formulir Mahasiswa</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-gear"></i>
+                                            <span>OSMB</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-gear"></i>
+                                            <span>LPKBJJ</span>
+                                        </a>
+                                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
+                                                SK Yudisium
+                                            </a>
+                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
+                                                Tracer Alumni
+                                            </a>
+                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
+                                                Pusat Karir
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mega-dropdown">
+                        <a class="nav-link" href="#">
+                            Kegiatan <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu" style="min-width: 600px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Kegiatan Mahasiswa</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-trophy"></i>
+                                            <span>Mahasiswa Berprestasi</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-calendar-event"></i>
+                                            <span>Kegiatan Mahasiswa</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Dokumentasi</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-images"></i>
+                                            <span>Galeri Kegiatan</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-camera-video"></i>
+                                            <span>Video Kegiatan</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mega-dropdown">
+                        <a class="nav-link" href="#">
+                            Brosur <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
+                        <div class="mega-dropdown-menu" style="min-width: 600px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Brosur Program</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-file-earmark-pdf"></i>
+                                            <span>Brosur Sarjana</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-file-earmark-pdf"></i>
+                                            <span>Brosur Pascasarjana</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mega-section">
+                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Download</h6>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-download"></i>
+                                            <span>Download Semua Brosur</span>
+                                        </a>
+                                        <a href="#" class="mega-link">
+                                            <i class="bi bi-info-circle"></i>
+                                            <span>Panduan Pendaftaran</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
                 </ul>
             </div>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -921,35 +1357,59 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5 class="text-white mb-3">
-                        <i class="bi bi-newspaper"></i> PortalBerita
+                        <i class="bi bi-mortarboard-fill"></i> SALUT UT Samarinda
                     </h5>
                     <p class="small">
-                        Portal berita terkini Indonesia dengan informasi terpercaya seputar politik, ekonomi, olahraga, teknologi, dan hiburan.
+                        🧑‍💻 Sentra Layanan Universitas Terbuka (SALUT) UT Kota Samarinda
+                    </p>
+                    <p class="small mb-2">
+                        <i class="bi bi-geo-alt-fill text-warning"></i> Jl. Pramuka 6 Ruko No.3, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75125 (Depan Kopiria Pramuka)
+                    </p>
+                    <p class="small">
+                        <i class="bi bi-clock-fill text-warning"></i> Senin - Minggu 08.00 - 21.00 WITA
                     </p>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h6 class="text-white mb-3">Kategori</h6>
+                    <h6 class="text-white mb-3"><i class="bi bi-telephone-fill"></i> Kontak Kami</h6>
                     <ul class="list-unstyled small">
-                        @foreach(\App\Models\Category::where('is_active', true)->orderBy('order')->get() as $cat)
-                        <li class="mb-1">
-                            <a href="{{ route('category.show', $cat->slug) }}">{{ $cat->name }}</a>
+                        <li class="mb-2">
+                            <strong>Admin 1:</strong> <a href="https://wa.me/6282160040017" target="_blank" class="text-warning">082160040017</a>
                         </li>
-                        @endforeach
+                        <li class="mb-2">
+                            <strong>Admin 2:</strong> <a href="https://wa.me/6285754946867" target="_blank" class="text-warning">085754946867</a>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Admin 3:</strong> <a href="https://wa.me/6285217171780" target="_blank" class="text-warning">085217171780</a>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Admin 4:</strong> <a href="https://wa.me/6285217171790" target="_blank" class="text-warning">085217171790</a>
+                        </li>
+                        <li class="mb-2">
+                            <strong>PMB:</strong> <a href="https://wa.me/6285247371117" target="_blank" class="text-warning">085247371117</a>
+                        </li>
+                        <li class="mb-2">
+                            <strong>WA Blast:</strong> <a href="https://wa.me/6282233031717" target="_blank" class="text-warning">082233031717</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <h6 class="text-white mb-3">Ikuti Kami</h6>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="fs-4"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="fs-4"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="fs-4"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="fs-4"><i class="bi bi-youtube"></i></a>
+                    <h6 class="text-white mb-3"><i class="bi bi-share-fill"></i> Ikuti Kami</h6>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="https://www.instagram.com/salutsamarinda_univterbuka" target="_blank" class="text-white">
+                            <i class="bi bi-instagram fs-5 me-2"></i> @salutsamarinda_univterbuka
+                        </a>
+                        <a href="https://www.facebook.com/people/Salut-UT-Samarinda/61556669633668/" target="_blank" class="text-white">
+                            <i class="bi bi-facebook fs-5 me-2"></i> Salut UT Samarinda
+                        </a>
+                        <a href="https://www.tiktok.com/@salut_ut_samarinda" target="_blank" class="text-white">
+                            <i class="bi bi-tiktok fs-5 me-2"></i> @salut_ut_samarinda
+                        </a>
                     </div>
                 </div>
             </div>
             <hr class="border-secondary">
             <div class="text-center small py-3">
-                <p class="mb-0">&copy; {{ date('Y') }} PortalBerita. All rights reserved.</p>
+                <p class="mb-0">&copy; {{ date('Y') }} SALUT UT Samarinda - Sentra Layanan Universitas Terbuka. All rights reserved.</p>
             </div>
         </div>
     </footer>

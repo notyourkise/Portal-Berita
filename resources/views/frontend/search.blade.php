@@ -13,7 +13,7 @@
             </h2>
             <p class="text-muted">
                 Kata kunci: <strong>"{{ $keyword }}"</strong>
-                <span class="badge bg-warning text-dark ms-2">{{ $articles->total() }} artikel ditemukan</span>
+                <span class="badge ms-2" style="background-color: #fcdd01; color: #214594;">{{ $articles->total() }} artikel ditemukan</span>
             </p>
         </div>
         @endif
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent">
-                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-outline-warning btn-sm w-100">
+                        <a href="{{ route('article.show', $article->slug) }}" class="btn btn-sm w-100" style="background-color: #fcdd01; color: #214594; border: 1px solid #fcdd01;">
                             Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -62,7 +62,7 @@
             @else
             <p class="text-muted">Masukkan kata kunci untuk mencari artikel.</p>
             @endif
-            <a href="{{ route('home') }}" class="btn btn-warning mt-3">
+            <a href="{{ route('home') }}" class="btn mt-3" style="background-color: #fcdd01; color: #214594;">
                 <i class="bi bi-house"></i> Kembali ke Beranda
             </a>
         </div>
