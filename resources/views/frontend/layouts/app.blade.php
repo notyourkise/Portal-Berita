@@ -122,6 +122,41 @@
             padding-right: 15px;
         }
 
+        /* Navbar Fixed */
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1031;
+        }
+
+        .navbar-fixed-menu {
+            position: fixed;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        /* Offset untuk konten agar tidak tertutup navbar */
+        body {
+            padding-top: 165px; /* Total tinggi kedua navbar yang proporsional */
+        }
+
+        /* Navbar Light (Logo Navbar) */
+        .navbar-light.bg-white.navbar-fixed-top {
+            top: 0;
+            transition: top 0.3s ease-in-out;
+        }
+
+        /* Navbar Dark (Menu Navbar) */
+        .navbar-dark.navbar-fixed-menu {
+            top: 95px; /* Tinggi navbar atas + border */
+            transition: top 0.3s ease-in-out;
+        }
+
         /* Navbar Styling */
         .navbar-brand {
             font-weight: 800;
@@ -129,7 +164,7 @@
         }
 
         .navbar-brand img {
-            height: 35px;
+            height: 60px;
             width: auto;
             transition: transform 0.3s ease;
         }
@@ -166,9 +201,9 @@
         }
 
         .main-menu .nav-link {
-            padding: 1rem 0.9rem;
-            font-weight: 500;
-            font-size: 0.9rem;
+            padding: 1.3rem 1.6rem;
+            font-weight: 600;
+            font-size: 1.15rem;
             color: #fff !important;
             transition: all 0.3s ease;
             position: relative;
@@ -179,8 +214,8 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: 8px;
+            height: 3px;
+            bottom: 10px;
             left: 50%;
             background-color: #fcdd01;
             transition: all 0.3s ease;
@@ -540,7 +575,7 @@
         @media (max-width: 575.98px) {
             /* Typography */
             .navbar-brand img {
-                height: 28px !important;
+                height: 42px !important;
             }
 
             /* Hamburger menu mobile */
@@ -594,6 +629,15 @@
             /* Navbar */
             .navbar {
                 padding: 0.5rem 0 !important;
+            }
+
+            /* Navbar Position Fix for Mobile */
+            body {
+                padding-top: 105px !important; /* Adjusted for mobile header height */
+            }
+            
+            .navbar-dark.navbar-fixed-menu {
+                top: 61px !important; /* Adjusted for mobile top navbar height */
             }
 
             .navbar-brand {
@@ -765,7 +809,7 @@
         @media (min-width: 576px) and (max-width: 991.98px) {
             /* Typography */
             .navbar-brand img {
-                height: 30px !important;
+                height: 45px !important;
             }
 
             .section-title {
@@ -838,10 +882,7 @@
             }
 
             /* Navbar */
-            .main-menu .nav-link {
-                padding: 1rem 0.75rem;
-                font-size: 0.85rem;
-            }
+            /* Removed restrictive nav-link styles to allow larger base styles */
 
             /* Cards */
             .card-article img {
@@ -881,10 +922,7 @@
             }
 
             /* Navbar */
-            .main-menu .nav-link {
-                padding: 1rem 0.9rem;
-                font-size: 0.9rem;
-            }
+            /* Removed restrictive nav-link styles to allow larger base styles */
 
             /* Cards */
             .card-article img {
@@ -982,14 +1020,14 @@
 </head>
 <body>
     {{-- Top Navbar (Header) --}}
-    <nav class="navbar navbar-light bg-white py-2" style="border-bottom: 2px solid #fcdd01;">
+    <nav class="navbar navbar-light bg-white py-3 navbar-fixed-top" style="border-bottom: 3px solid #fcdd01;">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="{{ asset('LOGO_SALUT_.png') }}" alt="SALUT Logo">
             </a>
             <div class="d-flex align-items-center gap-3">
                 <form action="{{ route('search') }}" method="GET" class="d-flex">
-                    <input class="form-control form-control-sm" type="search" name="q" placeholder="Cari tokoh, topik atau peristiwa" value="{{ request('q') }}" style="max-width: 450px; min-width: 300px; width: 100%; border-radius: 20px;">
+                    <input class="form-control" type="search" name="q" placeholder="Cari tokoh, topik atau peristiwa" value="{{ request('q') }}" style="max-width: 500px; min-width: 350px; width: 100%; border-radius: 25px; padding: 0.6rem 1.2rem; font-size: 0.95rem;">
                     <button class="btn btn-link" type="submit" style="margin-left: -40px; color: #214594;">
                         <i class="bi bi-search"></i>
                     </button>
@@ -1002,7 +1040,7 @@
     </nav>
 
     {{-- Main Menu Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-dark py-0 sticky-top" style="background-color: #214594; z-index: 1030;">
+    <nav class="navbar navbar-expand-lg navbar-dark py-0 navbar-fixed-menu" style="background-color: #214594;">
         <div class="container">
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto main-menu">
@@ -1011,7 +1049,7 @@
                     </li>
                     <li class="nav-item mega-dropdown">
                         <a class="nav-link" href="#">
-                            Profil <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                            Profil <i class="bi bi-chevron-down ms-1" style="font-size: 0.85rem;"></i>
                         </a>
                         <div class="mega-dropdown-menu">
                             <div class="row g-0">
@@ -1025,19 +1063,19 @@
                                         <h5>Universitas Terbuka Jakarta</h5>
                                         <p class="small text-muted mb-3">Perguruan Tinggi Negeri Terjangkau & Terakreditasi A oleh BAN-PT</p>
                                         <div class="mega-links">
-                                            <a href="#" class="mega-link">
+                                            <a href="{{ route('page.show', 'kepala-dan-staf') }}" class="mega-link">
                                                 <i class="bi bi-person-circle"></i>
                                                 <span>Direktur</span>
                                             </a>
-                                            <a href="#" class="mega-link">
+                                            <a href="{{ route('page.show', 'kepala-dan-staf') }}" class="mega-link">
                                                 <i class="bi bi-people"></i>
                                                 <span>Manajer Tata Usaha</span>
                                             </a>
-                                            <a href="#" class="mega-link">
+                                            <a href="{{ route('page.show', 'kepala-dan-staf') }}" class="mega-link">
                                                 <i class="bi bi-megaphone"></i>
                                                 <span>Manajer Marketing dan Registrasi</span>
                                             </a>
-                                            <a href="#" class="mega-link">
+                                            <a href="{{ route('page.show', 'manajer-pembelajaran-ujian') }}" class="mega-link">
                                                 <i class="bi bi-book"></i>
                                                 <span>Manajer Pembelajaran dan Ujian</span>
                                             </a>
@@ -1048,21 +1086,21 @@
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <div class="d-flex gap-3">
-                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                        <a href="{{ route('page.show', 'visi-misi') }}" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
                                             <i class="bi bi-archive"></i>
                                             <span>Visi dan Misi</span>
                                         </a>
-                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                        <a href="{{ route('page.show', 'struktur-organisasi') }}" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
                                             <i class="bi bi-diagram-3"></i>
                                             <span>Struktur Organisasi</span>
                                         </a>
-                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                        <a href="{{ route('page.show', 'sejarah') }}" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
                                             <i class="bi bi-building"></i>
-                                            <span>UT Pusat</span>
+                                            <span>Sejarah</span>
                                         </a>
-                                        <a href="#" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                        <a href="https://ut.ac.id" target="_blank" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
                                             <i class="bi bi-award"></i>
-                                            <span>Akreditasi Universitas</span>
+                                            <span>UT Pusat</span>
                                         </a>
                                     </div>
                                 </div>
@@ -1151,192 +1189,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item mega-dropdown">
-                        <a class="nav-link" href="#">
-                            Mahasiswa <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#section-mahasiswa">
+                            Mahasiswa
                         </a>
-                        <div class="mega-dropdown-menu" style="min-width: 900px;">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Portal Mahasiswa</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-tv"></i>
-                                            <span>Tutorial Online</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-person-badge"></i>
-                                            <span>MyUT</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-book"></i>
-                                            <span>Ruang Baca Virtual</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-bookmark"></i>
-                                            <span>KIT-Mahasiswa</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-journal-bookmark"></i>
-                                            <span>Katalog</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-calendar-event"></i>
-                                            <span>Kalender-Akademik</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-truck"></i>
-                                            <span>Tracking Bahan Ajar</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Website UT</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>Jadwal Tutorial Mahasiswa</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>ecampus.ut.ac.id</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>silayar.ut.ac.id</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>praktik.ut.ac.id</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>the.ut.ac.id</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>suo.ut.ac.id</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>Skema Ujian Akhir Mahasiswa</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-laptop"></i>
-                                            <span>Cetak KTPU Numpang Ujian</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Layanan Lainnya</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-credit-card"></i>
-                                            <span>Biaya Pendidikan</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-file-earmark-text"></i>
-                                            <span>Formulir Mahasiswa</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-gear"></i>
-                                            <span>OSMB</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-gear"></i>
-                                            <span>LPKBJJ</span>
-                                        </a>
-                                        <div class="mt-3 d-flex gap-2 flex-wrap">
-                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
-                                                SK Yudisium
-                                            </a>
-                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
-                                                Tracer Alumni
-                                            </a>
-                                            <a href="#" class="btn btn-sm" style="background-color: #214594; color: white; border-radius: 20px; padding: 0.5rem 1.5rem;">
-                                                Pusat Karir
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item mega-dropdown">
-                        <a class="nav-link" href="#">
-                            Kegiatan <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
-                        </a>
-                        <div class="mega-dropdown-menu" style="min-width: 600px;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Kegiatan Mahasiswa</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-trophy"></i>
-                                            <span>Mahasiswa Berprestasi</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-calendar-event"></i>
-                                            <span>Kegiatan Mahasiswa</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Dokumentasi</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-images"></i>
-                                            <span>Galeri Kegiatan</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-camera-video"></i>
-                                            <span>Video Kegiatan</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item mega-dropdown">
-                        <a class="nav-link" href="#">
-                            Brosur <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
-                        </a>
-                        <div class="mega-dropdown-menu" style="min-width: 600px;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Brosur Program</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-file-earmark-pdf"></i>
-                                            <span>Brosur Sarjana</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-file-earmark-pdf"></i>
-                                            <span>Brosur Pascasarjana</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mega-section">
-                                        <h6 class="mb-3" style="color: #214594; font-weight: 600;">Download</h6>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-download"></i>
-                                            <span>Download Semua Brosur</span>
-                                        </a>
-                                        <a href="#" class="mega-link">
-                                            <i class="bi bi-info-circle"></i>
-                                            <span>Panduan Pendaftaran</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kontak</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="#footer">Kontak</a>
                     </li>
                 </ul>
             </div>
@@ -1352,7 +1211,7 @@
     </main>
 
     {{-- Footer --}}
-    <footer class="mt-5">
+    <footer class="mt-5" id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -1500,6 +1359,38 @@
                 themeIcon.className = 'bi bi-moon-stars-fill';
                 localStorage.setItem('theme', 'light');
             }
+        });
+    </script>
+
+    {{-- Navbar Scroll Logic --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let lastScrollTop = 0;
+            const topNavbar = document.querySelector('.navbar-fixed-top');
+            const menuNavbar = document.querySelector('.navbar-fixed-menu');
+            
+            // Calculate heights
+            const topNavHeight = topNavbar.offsetHeight;
+            const menuNavHeight = menuNavbar.offsetHeight;
+            
+            // Initial top position for menu navbar (should match CSS)
+            const initialMenuTop = parseInt(window.getComputedStyle(menuNavbar).top);
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > topNavHeight) {
+                    // Scroll Down - Hide Navbars
+                    topNavbar.style.top = `-${topNavHeight + 10}px`; // Hide top navbar
+                    menuNavbar.style.top = `-${menuNavHeight + 10}px`; // Hide menu navbar
+                } else {
+                    // Scroll Up - Show Navbars
+                    topNavbar.style.top = '0';
+                    menuNavbar.style.top = `${initialMenuTop}px`;
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+            });
         });
     </script>
     

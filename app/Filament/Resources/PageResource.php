@@ -19,7 +19,11 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     
-    protected static ?string $navigationGroup = 'Content Management';
+    protected static ?string $navigationLabel = 'Halaman';
+    
+    protected static ?string $modelLabel = 'Halaman';
+    
+    protected static ?string $pluralModelLabel = 'Halaman';
     
     protected static ?int $navigationSort = 4;
 
@@ -27,25 +31,52 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('content')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('meta_title')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('meta_description')
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
-                Forms\Components\TextInput::make('order')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
+                Forms\Components\Section::make('Informasi Halaman')
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label('Judul')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn (callable $set, $state) => $set('slug', \Illuminate\Support\Str::slug($state)))
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('slug')
+                            ->label('Slug URL')
+                            ->required()
+                            ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->helperText('URL halaman, otomatis dibuat dari judul'),
+                        Forms\Components\RichEditor::make('content')
+                            ->label('Konten')
+                            ->required()
+                            ->columnSpanFull()
+                            ->toolbarButtons([
+                                'bold',
+                                'italic',
+                                'underline',
+                                'strike',
+                                'link',
+                                'bulletList',
+                                'orderedList',
+                                'h2',
+                                'h3',
+                                'blockquote',
+                                'codeBlock',
+                            ]),
+                    ])->columns(2),
+                    
+                Forms\Components\Section::make('Pengaturan')
+                    ->schema([
+                        Forms\Components\Toggle::make('is_active')
+                            ->label('Aktif')
+                            ->default(true)
+                            ->required(),
+                        Forms\Components\TextInput::make('order')
+                            ->label('Urutan')
+                            ->required()
+                            ->numeric()
+                            ->default(0)
+                            ->helperText('Urutan tampilan (semakin kecil, semakin atas)'),
+                    ])->columns(2),
             ]);
     }
 
@@ -54,36 +85,54 @@ class PageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Judul')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('meta_title')
-                    ->searchable(),
+                    ->label('Slug')
+                    ->searchable()
+                    ->copyable()
+                    ->badge()
+                    ->color('gray'),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->boolean(),
+                    ->label('Status')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->trueColor('success')
+                    ->falseColor('danger'),
                 Tables\Columns\TextColumn::make('order')
+                    ->label('Urutan')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Dibuat')
+                    ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Diubah')
+                    ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('is_active')
+                    ->label('Status')
+                    ->placeholder('Semua')
+                    ->trueLabel('Aktif')
+                    ->falseLabel('Tidak Aktif'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('order', 'asc');
     }
 
     public static function getRelations(): array
@@ -100,29 +149,5 @@ class PageResource extends Resource
             'create' => Pages\CreatePage::route('/create'),
             'edit' => Pages\EditPage::route('/{record}/edit'),
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        // Only Redaktur and Admin can create
-        return auth()->user()->hasAnyRole(['redaktur', 'admin']);
-    }
-
-    public static function canEdit($record): bool
-    {
-        // Only Redaktur and Admin can edit
-        return auth()->user()->hasAnyRole(['redaktur', 'admin']);
-    }
-
-    public static function canDelete($record): bool
-    {
-        // Only Admin can delete
-        return auth()->user()->hasRole('admin');
-    }
-
-    public static function canDeleteAny(): bool
-    {
-        // Only Admin can bulk delete
-        return auth()->user()->hasRole('admin');
     }
 }

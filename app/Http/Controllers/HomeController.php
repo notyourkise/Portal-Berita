@@ -25,13 +25,13 @@ class HomeController extends Controller
                 ? Article::published()->find($headlineId) 
                 : Article::published()->latest('published_at')->first();
 
-            // Latest articles - headline + 6 more (total 7)
+            // Latest articles - headline + 12 more (total 13)
             if ($headlineArticle) {
                 $latestArticles = collect([$headlineArticle])->merge(
                     Article::published()
                         ->where('id', '!=', $headlineArticle->id)
                         ->latest('published_at')
-                        ->take(6)
+                        ->take(12)
                         ->get()
                 );
             } else {
@@ -53,6 +53,19 @@ class HomeController extends Controller
                     ->take(4)
                     ->get();
             }
+
+            // Mahasiswa articles
+            $mahasiswaCategory = Category::where('slug', 'kegiatan-mahasiswa')
+                ->orWhere('name', 'like', '%mahasiswa%')
+                ->first();
+            
+            $mahasiswaArticles = $mahasiswaCategory 
+                ? Article::published()
+                    ->where('category_id', $mahasiswaCategory->id)
+                    ->latest('published_at')
+                    ->take(4)
+                    ->get()
+                : collect([]);
 
             // Most viewed articles (cache separately for 1 hour)
             $popularArticles = Cache::remember('popular_articles', 3600, function () {
@@ -97,7 +110,8 @@ class HomeController extends Controller
                 'categories',
                 'categorizedArticles',
                 'popularArticles',
-                'hotTopics'
+                'hotTopics',
+                'mahasiswaArticles'
             );
         });
 

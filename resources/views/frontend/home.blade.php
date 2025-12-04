@@ -12,61 +12,53 @@
             <div class="col-lg-8">
                 <div class="row g-3">
                     @if($latestArticles->count() > 0)
-                        {{-- ROW 1: Headline (kiri) + 3 Card (kanan) --}}
                         @php
                             $headline = $latestArticles->first();
                         @endphp
                         
                         {{-- Headline Besar --}}
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <div class="card card-article border-0 shadow-sm h-100">
+                        <div class="col-12 col-md-6">
+                            <div class="card card-article border-0 shadow-sm">
                                 <div class="position-relative headline-image">
                                     {!! article_cover($headline, 'large', 'card-img-top w-100') !!}
-                                    <div class="position-absolute top-0 start-0 m-2 m-md-3">
-                                        <span class="badge px-2 py-1 px-md-3 py-md-2" style="background-color: #fcdd01; color: #214594;">
+                                    <div class="position-absolute top-0 start-0 m-3">
+                                        <span class="badge px-3 py-2" style="background-color: #fcdd01; color: #214594; font-weight: 700;">
                                             <i class="bi bi-star-fill"></i> Headline
                                         </span>
                                     </div>
                                 </div>
-                                <div class="card-body p-2 p-md-3">
+                                <div class="card-body p-2">
                                     <span class="category-badge">{{ $headline->category->name }}</span>
-                                    <h4 class="card-title mt-2 fw-bold mb-2">
+                                    <h5 class="card-title mt-2 fw-bold mb-2">
                                         <a href="{{ route('article.show', $headline->slug) }}" class="text-decoration-none text-dark">
-                                            {{ Str::limit($headline->title, 80) }}
+                                            {{ $headline->title }}
                                         </a>
-                                    </h4>
-                                    <p class="card-text text-muted small mb-2 d-none d-md-block">{{ Str::limit($headline->excerpt, 100) }}</p>
+                                    </h5>
+                                    <p class="card-text text-muted mb-2" style="font-size: 0.85rem;">{{ Str::limit($headline->excerpt, 150) }}</p>
                                     <div class="article-meta small">
-                                        <span class="me-2"><i class="bi bi-clock"></i> {{ $headline->published_at->diffForHumans() }}</span>
-                                        <span class="me-2 d-none d-sm-inline"><i class="bi bi-book text-primary"></i> {{ $headline->reading_time }} mnt</span>
-                                        <span class="d-none d-sm-inline"><i class="bi bi-eye"></i> {{ number_format($headline->views) }}</span>
+                                        <span class="me-3"><i class="bi bi-clock"></i> {{ $headline->published_at->diffForHumans() }}</span>
+                                        <span class="me-3"><i class="bi bi-book text-primary"></i> {{ $headline->reading_time }} mnt</span>
+                                        <span><i class="bi bi-eye"></i> {{ number_format($headline->views) }}</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {{-- 3 Card Kanan (Ukuran Sama) --}}
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <div class="row g-2 g-md-3">
-                                @foreach($latestArticles->skip(1)->take(3) as $article)
-                                <div class="col-12">
-                                    <div class="card card-article border-0 shadow-sm compact-card">
-                                        <div class="row g-0 h-100">
-                                            <div class="col-4 col-sm-4">
-                                                {!! article_cover($article, 'small', 'w-100 h-100 compact-img') !!}
-                                            </div>
-                                            <div class="col-8 col-sm-8">
-                                                <div class="card-body p-2 d-flex flex-column h-100">
-                                                    <span class="category-badge small">{{ $article->category->name }}</span>
-                                                    <h6 class="card-title mt-1 fw-bold mb-1 compact-title">
-                                                        <a href="{{ route('article.show', $article->slug) }}" class="text-decoration-none text-dark">
-                                                            {{ Str::limit($article->title, 60) }}
-                                                        </a>
-                                                    </h6>
-                                                    <div class="article-meta small mt-auto">
-                                                        <span><i class="bi bi-clock"></i> {{ $article->published_at->diffForHumans() }}</span>
-                                                    </div>
-                                                </div>
+                            {{-- 2 Card Kecil di Bawah Headline --}}
+                            <div class="row g-2 mt-2 justify-content-center">
+                                @foreach($latestArticles->skip(1)->take(2) as $article)
+                                <div class="col-5">
+                                    <div class="card card-article border-0 shadow-sm h-100">
+                                        <div class="position-relative small-bottom-card-image">
+                                            {!! article_cover($article, 'small', 'card-img-top w-100') !!}
+                                        </div>
+                                        <div class="card-body p-1">
+                                            <h6 class="card-title mt-1 fw-bold mb-1 small-bottom-card-title">
+                                                <a href="{{ route('article.show', $article->slug) }}" class="text-decoration-none text-dark">
+                                                    {{ Str::limit($article->title, 40) }}
+                                                </a>
+                                            </h6>
+                                            <div class="article-meta-tiny">
+                                                <span><i class="bi bi-clock"></i> {{ $article->published_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -75,31 +67,30 @@
                             </div>
                         </div>
 
-                        {{-- ROW 2: 3 Card Bawah (Ukuran Sama Semua) --}}
-                        @foreach($latestArticles->skip(4)->take(3) as $article)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-                            <div class="card card-article border-0 shadow-sm compact-card">
-                                <div class="row g-0 h-100">
-                                    <div class="col-5 col-sm-5">
-                                        {!! article_cover($article, 'small', 'w-100 h-100 compact-img') !!}
-                                    </div>
-                                    <div class="col-7 col-sm-7">
-                                        <div class="card-body p-2 d-flex flex-column h-100">
-                                            <span class="category-badge small">{{ $article->category->name }}</span>
-                                            <h6 class="card-title mt-1 fw-bold mb-1 compact-title">
+                        {{-- Card Kecil di Samping Kanan Headline --}}
+                        <div class="col-12 col-md-6">
+                            <div class="row g-2">
+                                @foreach($latestArticles->skip(3)->take(9) as $article)
+                                <div class="col-4">
+                                    <div class="card card-article border-0 shadow-sm h-100">
+                                        <div class="position-relative small-bottom-card-image">
+                                            {!! article_cover($article, 'small', 'card-img-top w-100') !!}
+                                        </div>
+                                        <div class="card-body p-1">
+                                            <h6 class="card-title mt-1 fw-bold mb-1 small-bottom-card-title">
                                                 <a href="{{ route('article.show', $article->slug) }}" class="text-decoration-none text-dark">
-                                                    {{ Str::limit($article->title, 50) }}
+                                                    {{ Str::limit($article->title, 40) }}
                                                 </a>
                                             </h6>
-                                            <div class="article-meta small mt-auto">
+                                            <div class="article-meta-tiny">
                                                 <span><i class="bi bi-clock"></i> {{ $article->published_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
                     @else
                         <div class="col-12">
                             <p class="text-center text-muted">Belum ada artikel terbaru.</p>
@@ -180,6 +171,43 @@
 @endif
 @endforeach
 
+{{-- Mahasiswa Section --}}
+@if($mahasiswaArticles->count() > 0)
+<section class="py-4 py-md-5" style="background-color: #f8f9fa;" id="section-mahasiswa">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3 mb-md-4">
+            <h2 class="section-title mb-0">
+                <i class="bi bi-mortarboard-fill" style="color: #214594;"></i> Kegiatan Mahasiswa
+            </h2>
+            <a href="{{ route('mahasiswa') }}" class="btn btn-sm" style="background-color: #fcdd01; color: #214594; border-color: #fcdd01;">
+                Lihat Semua <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        <div class="row g-3 g-md-4">
+            @foreach($mahasiswaArticles as $article)
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="card card-article h-100">
+                    <div class="category-card-image">
+                        {!! article_cover($article, 'medium', 'card-img-top w-100') !!}
+                    </div>
+                    <div class="card-body p-2 p-md-3">
+                        <h6 class="card-title fw-bold category-card-title">
+                            <a href="{{ route('article.show', $article->slug) }}" class="text-decoration-none text-dark">
+                                {{ Str::limit($article->title, 60) }}
+                            </a>
+                        </h6>
+                        <div class="article-meta small">
+                            <span><i class="bi bi-clock"></i> {{ $article->published_at->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 {{-- Popular / Trending --}}
 @if($popularArticles->count() > 0)
 <section class="py-4 py-md-5">
@@ -215,29 +243,87 @@
 <style>
     /* Responsive Styles for Home Page */
     
-    /* Headline Image */
+    /* Headline Image - Card Besar */
     .headline-image {
-        height: 200px;
+        height: 350px;
         overflow: hidden;
     }
     
     .headline-image img {
         object-fit: cover;
         height: 100%;
+        width: 100%;
     }
 
-    /* Compact Cards */
-    .compact-card {
-        height: 110px;
+    /* Small Bottom Cards - 2 Card Kecil di Bawah Headline */
+    .small-bottom-card-image {
+        height: 120px;
+        overflow: hidden;
     }
 
-    .compact-img {
+    .small-bottom-card-image img {
         object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
 
-    .compact-title {
-        font-size: 0.85rem;
+    .small-bottom-card-title {
+        font-size: 0.75rem;
         line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .article-meta-tiny {
+        font-size: 0.65rem;
+        color: #6c757d;
+        margin-top: 2px;
+    }
+
+    .article-meta-tiny i {
+        font-size: 0.55rem;
+    }
+
+    /* Small Cards - 7 Card Kecil (4 samping, 3 bawah) */
+    .small-card {
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .small-img {
+        object-fit: cover;
+        height: 100px;
+    }
+
+    .small-title {
+        font-size: 0.8rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .category-badge-small {
+        background-color: #214594;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .article-meta-small {
+        font-size: 0.7rem;
+        color: #6c757d;
+        margin-top: 4px;
+    }
+
+    .article-meta-small i {
+        font-size: 0.65rem;
     }
 
     /* Category Cards */
@@ -287,15 +373,28 @@
     /* Mobile (up to 575px) */
     @media (max-width: 575.98px) {
         .headline-image {
-            height: 180px;
+            height: 200px;
         }
 
-        .compact-card {
-            height: 100px;
+        .small-card {
+            height: 90px;
         }
 
-        .compact-title {
-            font-size: 0.8rem;
+        .small-img {
+            height: 90px;
+        }
+
+        .small-title {
+            font-size: 0.75rem;
+        }
+
+        .category-badge-small {
+            font-size: 0.6rem;
+            padding: 2px 6px;
+        }
+
+        .article-meta-small {
+            font-size: 0.65rem;
         }
 
         .category-card-image {
@@ -326,14 +425,38 @@
         }
     }
 
-    /* Tablets (576px - 991px) */
-    @media (min-width: 576px) and (max-width: 991.98px) {
+    /* Tablets (576px - 767px) */
+    @media (min-width: 576px) and (max-width: 767.98px) {
         .headline-image {
-            height: 220px;
+            height: 250px;
         }
 
-        .compact-card {
-            height: 120px;
+        .small-card {
+            height: 95px;
+        }
+
+        .small-img {
+            height: 95px;
+        }
+
+        .hot-topics-card {
+            position: static !important;
+            margin-top: 1.5rem;
+        }
+    }
+
+    /* Tablets landscape (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .headline-image {
+            height: 150px;
+        }
+
+        .small-card {
+            height: 100px;
+        }
+
+        .small-img {
+            height: 100px;
         }
 
         .category-card-image {
@@ -346,25 +469,41 @@
         }
     }
 
-    /* Desktops (992px+) */
-    @media (min-width: 992px) {
+    /* Desktops (992px - 1199px) */
+    @media (min-width: 992px) and (max-width: 1199.98px) {
         .headline-image {
-            height: 230px;
+            height: 220px;
         }
 
-        .compact-card {
-            height: 120px;
+        .small-card {
+            height: 105px;
         }
 
-        .category-card-image {
-            height: 150px;
+        .small-img {
+            height: 105px;
+        }
+
+        .small-title {
+            font-size: 0.78rem;
         }
     }
 
     /* Large Desktops (1200px+) */
     @media (min-width: 1200px) {
         .headline-image {
-            height: 250px;
+            height: 240px;
+        }
+
+        .small-card {
+            height: 110px;
+        }
+
+        .small-img {
+            height: 110px;
+        }
+
+        .small-title {
+            font-size: 0.82rem;
         }
 
         .category-card-image {
@@ -374,6 +513,20 @@
         .trending-title {
             font-size: 1.2rem;
         }
+    }
+
+    /* Card hover effects */
+    .card-article {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-article:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(33, 69, 148, 0.15) !important;
+    }
+
+    .card-article a:hover {
+        color: #214594 !important;
     }
 </style>
 @endpush

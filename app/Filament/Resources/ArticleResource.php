@@ -155,14 +155,16 @@ class ArticleResource extends Resource
                                     ]),
 
                                 Section::make('Organization')
-                                    ->description('Pilih kategori utama dan tag untuk mengorganisir artikel Anda')
+                                    ->description('Pilih kategori utama dan tag untuk mengorganisir artikel SALUT UT Samarinda')
                                     ->schema([
                                         Forms\Components\Placeholder::make('organization_help')
                                             ->label('')
-                                            ->content('💡 **Cara memilih kategori & tag:**
-- **Kategori** = Topik utama (contoh: Olahraga, Politik, Teknologi)
-- **Tag** = Sub-topik spesifik (contoh: untuk Olahraga → pilih Sepakbola, Basket, dll)
-- Anda bisa memilih **lebih dari 1 tag** untuk artikel yang mencakup beberapa topik'),
+                                            ->content(new \Illuminate\Support\HtmlString('
+                                                💡 <strong>Cara memilih kategori & tag:</strong><br>
+                                                - <strong>Kategori</strong> = Topik utama (contoh: Pendaftaran, Kegiatan Mahasiswa, Layanan, Berita UT)<br>
+                                                - <strong>Tag</strong> = Sub-topik spesifik (contoh: untuk Pendaftaran → pilih Mahasiswa Baru, Registrasi, S1, S2, dll)<br>
+                                                - Anda bisa memilih <strong>lebih dari 1 tag</strong> untuk artikel yang mencakup beberapa topik
+                                            ')),
                                         
                                         Forms\Components\Select::make('category_id')
                                             ->label('Kategori Utama')
@@ -170,7 +172,7 @@ class ArticleResource extends Resource
                                             ->required()
                                             ->searchable()
                                             ->preload()
-                                            ->helperText('Pilih 1 kategori: Politik, Ekonomi, Teknologi, Olahraga, Hiburan, Gaya Hidup, Kesehatan, Pendidikan')
+                                            ->helperText('Pilih 1 kategori: Pendaftaran, Kegiatan Mahasiswa, Layanan, Tutorial, Berita UT, Pengumuman, dll')
                                             ->createOptionForm([
                                                 Forms\Components\TextInput::make('name')
                                                     ->required()
@@ -193,7 +195,7 @@ class ArticleResource extends Resource
                                             ->multiple()
                                             ->searchable()
                                             ->preload()
-                                            ->helperText('Contoh: Pilih "Olahraga" sebagai kategori, lalu pilih tag "Sepakbola" + "Liga Indonesia". Bisa kosong jika tidak ada tag yang sesuai.')
+                                            ->helperText('Contoh: Pilih "Pendaftaran" sebagai kategori, lalu pilih tag "Mahasiswa Baru" + "Registrasi" + "S1". Bisa kosong jika tidak ada tag yang sesuai.')
                                             ->createOptionForm([
                                                 Forms\Components\TextInput::make('name')
                                                     ->required()
@@ -220,18 +222,20 @@ class ArticleResource extends Resource
                                     ]),
 
                                 Section::make('Cover Image')
-                                    ->description('⚠️ PENTING: Upload gambar dengan rasio 16:9 untuk tampilan terbaik')
+                                    ->description('⚠️ PENTING: Upload gambar dengan rasio 16:9 (landscape) untuk tampilan terbaik')
                                     ->schema([
                                         Forms\Components\Placeholder::make('image_guide')
                                             ->label('')
-                                            ->content('
-                                                📏 Panduan Ukuran Gambar:
-                                                • Headline Card: 1200x675px atau 800x450px (rasio 16:9)
-                                                • Card Artikel: 400x225px atau 600x338px (rasio 16:9)
-                                                • Ukuran file maksimal: 5MB
-                                                • Format: JPG, PNG, WebP
-                                                • Gambar akan otomatis di-crop menggunakan object-fit: cover
-                                            ')
+                                            ->content(new \Illuminate\Support\HtmlString('
+                                                📏 <strong>Panduan Ukuran Gambar:</strong><br>
+                                                • <strong>Headline Card</strong>: 1200x675px (tinggi card 350px - tampil penuh)<br>
+                                                • <strong>Card Kecil Samping/Bawah</strong>: 800x450px atau 600x338px (tinggi card 60px - tampil kecil)<br>
+                                                • <strong>Card Kategori</strong>: 800x450px (tinggi card 140px - tampil sedang)<br>
+                                                • Ukuran file maksimal: 5MB<br>
+                                                • Format: JPG, PNG, WebP<br>
+                                                • Gambar akan otomatis di-crop dengan <code>object-fit: cover</code><br>
+                                                👉 <em>Gunakan rasio 16:9 (landscape) untuk hasil terbaik di semua ukuran card</em>
+                                            '))
                                             ->columnSpanFull(),
                                         
                                         Forms\Components\FileUpload::make('cover_image')

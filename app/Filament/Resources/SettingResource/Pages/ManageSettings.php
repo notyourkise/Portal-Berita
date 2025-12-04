@@ -52,7 +52,7 @@ class ManageSettings extends Page
                         
                         Select::make('hot_topics')
                             ->label('Hot Topics (5 Tag)')
-                            ->helperText('Pilih 5 tag yang akan ditampilkan di sidebar Hot Topics')
+                            ->helperText('Pilih 5 tag dari daftar tag yang tersedia. Tag ditampilkan berdasarkan jumlah artikel yang dipublikasikan.')
                             ->options(
                                 Tag::withCount(['articles' => function($q) {
                                     $q->where('status', 'published')
@@ -63,7 +63,6 @@ class ManageSettings extends Page
                                     return $tag->articles_count > 0;
                                 })
                                 ->sortByDesc('articles_count')
-                                ->take(50)
                                 ->mapWithKeys(fn($tag) => [$tag->id => "{$tag->name} ({$tag->articles_count} artikel)"])
                             )
                             ->searchable()

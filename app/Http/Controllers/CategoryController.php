@@ -21,4 +21,19 @@ class CategoryController extends Controller
 
         return view('frontend.category.show', compact('category', 'articles'));
     }
+
+    public function mahasiswa()
+    {
+        // Get Kegiatan Mahasiswa category
+        $category = Category::where('slug', 'kegiatan-mahasiswa')
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $articles = Article::published()
+            ->where('category_id', $category->id)
+            ->latest('published_at')
+            ->paginate(12);
+
+        return view('frontend.mahasiswa.index', compact('category', 'articles'));
+    }
 }
