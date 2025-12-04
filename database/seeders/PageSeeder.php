@@ -13,25 +13,21 @@ class PageSeeder extends Seeder
             [
                 'title' => 'Visi dan Misi',
                 'slug' => 'visi-misi',
-                'content' => '<h2>Visi</h2>
-<p>Menjadi Sentra Layanan Universitas Terbuka yang unggul dalam memberikan pelayanan pendidikan tinggi terbuka dan jarak jauh yang berkualitas di Kalimantan Timur.</p>
+                'content' => '<h2>SALUT KOTA SAMARINDA</h2>
+<p><em>Salut Kota Samarinda Pintu Terdekat Menuju Kampus Terbuka.</em></p>
+
+<h2>Visi</h2>
+<p>Menjadi pusat layanan pendidikan tinggi terbuka dan jarak jauh yang unggul, mudah diakses, serta terpercaya di Kota Samarinda, untuk mendukung terwujudnya masyarakat berdaya saing melalui perluasan akses pendidikan sepanjang masa.</p>
 
 <h2>Misi</h2>
 <ol>
-<li>Memberikan layanan akademik dan administrasi yang prima kepada mahasiswa dan calon mahasiswa</li>
-<li>Memfasilitasi proses pembelajaran yang efektif dan efisien melalui sistem pendidikan terbuka dan jarak jauh</li>
-<li>Meningkatkan aksesibilitas pendidikan tinggi bagi masyarakat Kalimantan Timur</li>
-<li>Mengembangkan kemitraan dengan berbagai pihak untuk meningkatkan kualitas layanan</li>
-<li>Memberikan bimbingan dan dukungan akademik kepada mahasiswa untuk mencapai keberhasilan studi</li>
-</ol>
-
-<h2>Tujuan</h2>
-<ul>
-<li>Meningkatkan jumlah mahasiswa yang menyelesaikan studi tepat waktu</li>
-<li>Memberikan layanan tutorial yang berkualitas baik online maupun tatap muka</li>
-<li>Menyediakan fasilitas dan infrastruktur yang mendukung proses pembelajaran</li>
-<li>Meningkatkan kepuasan mahasiswa terhadap layanan SALUT UT Samarinda</li>
-</ul>',
+<li>Menyelenggarakan layanan administrasi dan akademik yang cepat, tepat, transparan, dan berorientasi pada kepuasan mahasiswa melalui pemanfaatan teknologi dan peningkatan kualitas layanan.</li>
+<li>Memfasilitasi kegiatan akademik, bimbingan belajar, serta kegiatan pengembangan mahasiswa guna mendukung keberhasilan studi dan peningkatan kualitas lulusan Universitas Terbuka.</li>
+<li>Melakukan sosialisasi, promosi, dan edukasi tentang sistem pendidikan terbuka dan jarak jauh kepada masyarakat Samarinda dan sekitarnya untuk meningkatkan pemahaman dan kepercayaan terhadap Universitas Terbuka.</li>
+<li>Melaksanakan kegiatan perekrutan calon mahasiswa secara aktif, inklusif, dan berkelanjutan demi memperluas akses pendidikan tinggi dan meningkatkan angka partisipasi mahasiswa UT.</li>
+<li>Membangun kemitraan strategis dengan instansi pemerintah, lembaga pendidikan, dunia usaha, dan komunitas lokal untuk mendukung pengembangan layanan, kegiatan akademik, dan pemberdayaan masyarakat.</li>
+<li>Menjamin kenyamanan, aksesibilitas, dan kedekatan layanan bagi seluruh pemangku kepentingan sehingga SALUT menjadi pusat rujukan layanan UT yang mudah dijangkau dan responsif.</li>
+</ol>',
                 'is_active' => true,
                 'order' => 1,
             ],

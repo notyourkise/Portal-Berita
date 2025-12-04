@@ -9,6 +9,11 @@ class PageController extends Controller
 {
     public function show($slug)
     {
+        // Halaman statis khusus untuk visi-misi
+        if ($slug === 'visi-misi') {
+            return view('frontend.page.visi-misi');
+        }
+        
         $page = Page::where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();
