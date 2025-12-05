@@ -46,7 +46,13 @@
             max-width: 100%;
             position: relative;
             scroll-behavior: smooth;
-            overscroll-behavior: none; /* Mencegah pull-to-refresh di mobile */
+        }
+
+        /* Lock body scroll saat menu mobile terbuka */
+        body.menu-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
         }
 
         body {
@@ -346,6 +352,73 @@
 
             .nav-item.show > .dropdown-menu {
                 display: block;
+            }
+
+            /* Mobile mega dropdown styling */
+            .mega-dropdown-menu {
+                position: static !important;
+                min-width: 100% !important;
+                width: 100% !important;
+                padding: 1rem;
+                background-color: #1a3670 !important;
+                border-radius: 0 !important;
+                max-height: 60vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .mega-dropdown-menu .row {
+                flex-direction: column;
+            }
+
+            .mega-dropdown-menu .mega-section {
+                padding: 0.5rem;
+            }
+
+            .mega-dropdown-menu .mega-image {
+                display: none; /* Hide image on mobile */
+            }
+
+            .mega-dropdown-menu h5 {
+                color: #fcdd01 !important;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .mega-dropdown-menu p.text-muted {
+                color: #ccc !important;
+            }
+
+            .mega-dropdown-menu .mega-link {
+                color: #fff !important;
+                border-bottom-color: #333 !important;
+                padding: 0.6rem 0;
+            }
+
+            .mega-dropdown-menu .mega-link:hover {
+                color: #fcdd01 !important;
+            }
+
+            .mega-dropdown-menu .mega-link i {
+                color: #fcdd01 !important;
+            }
+
+            .mega-dropdown-menu .d-flex.gap-3 {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+
+            .mega-dropdown-menu .d-flex.gap-3 .mega-link {
+                border: 1px solid #444 !important;
+                border-radius: 8px;
+                padding: 0.8rem !important;
+            }
+
+            /* Navbar collapse scrollable */
+            .navbar-collapse {
+                max-height: calc(100vh - 120px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
 
@@ -647,6 +720,13 @@
             }
 
             /* Mobile menu expanded state */
+            .navbar-collapse.show,
+            .navbar-collapse.collapsing {
+                max-height: calc(100vh - 105px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
             .navbar-collapse {
                 margin-top: 0.5rem;
                 background-color: #214594;
@@ -1427,29 +1507,46 @@
             let lastScrollTop = 0;
             const topNavbar = document.querySelector('.navbar-fixed-top');
             const menuNavbar = document.querySelector('.navbar-fixed-menu');
+            const mainMenu = document.getElementById('mainMenu');
             
             // Calculate heights
             const topNavHeight = topNavbar.offsetHeight;
             const menuNavHeight = menuNavbar.offsetHeight;
+            const totalNavHeight = topNavHeight + menuNavHeight;
             
             // Initial top position for menu navbar (should match CSS)
             const initialMenuTop = parseInt(window.getComputedStyle(menuNavbar).top);
 
             window.addEventListener('scroll', function() {
+                // Jangan sembunyikan navbar saat menu mobile terbuka
+                if (mainMenu && mainMenu.classList.contains('show')) {
+                    return;
+                }
+
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > lastScrollTop && scrollTop > topNavHeight) {
-                    // Scroll Down - Hide Navbars
-                    topNavbar.style.top = `-${topNavHeight + 10}px`; // Hide top navbar
-                    menuNavbar.style.top = `-${menuNavHeight + 10}px`; // Hide menu navbar
+                    // Scroll Down - Hide top navbar, tapi menu navbar nempel ke atas
+                    topNavbar.style.top = `-${topNavHeight}px`;
+                    menuNavbar.style.top = '0'; // Menu navbar nempel ke atas
                 } else {
-                    // Scroll Up - Show Navbars
+                    // Scroll Up - Show both Navbars
                     topNavbar.style.top = '0';
                     menuNavbar.style.top = `${initialMenuTop}px`;
                 }
                 
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             });
+
+            // Lock body scroll saat menu mobile terbuka
+            if (mainMenu) {
+                mainMenu.addEventListener('show.bs.collapse', function() {
+                    document.body.classList.add('menu-open');
+                });
+                mainMenu.addEventListener('hide.bs.collapse', function() {
+                    document.body.classList.remove('menu-open');
+                });
+            }
         });
     </script>
     
