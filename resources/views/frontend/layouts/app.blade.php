@@ -1339,65 +1339,261 @@
     {{-- Footer --}}
     <footer class="mt-5" id="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-white mb-3">
-                        <i class="bi bi-mortarboard-fill"></i> SALUT UT Samarinda
-                    </h5>
-                    <p class="small">
-                        🧑‍💻 Sentra Layanan Universitas Terbuka (SALUT) UT Kota Samarinda
+            {{-- Footer Top Section --}}
+            <div class="row py-4">
+                {{-- Brand & About --}}
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="footer-brand mb-3">
+                        <img src="{{ asset('LOGO_SALUT_.png') }}" alt="SALUT Logo" style="height: 50px; filter: brightness(0) invert(1);">
+                    </div>
+                    <p class="text-secondary mb-3" style="font-size: 0.9rem; line-height: 1.7;">
+                        Sentra Layanan Universitas Terbuka (SALUT) UT Kota Samarinda - Melayani pendaftaran, konsultasi akademik, dan informasi seputar Universitas Terbuka.
                     </p>
-                    <p class="small mb-2">
-                        <i class="bi bi-geo-alt-fill text-warning"></i> Jl. Pramuka 6 Ruko No.3, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75125 (Depan Kopiria Pramuka)
-                    </p>
-                    <p class="small">
-                        <i class="bi bi-clock-fill text-warning"></i> Senin - Minggu 08.00 - 21.00 WITA
-                    </p>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h6 class="text-white mb-3"><i class="bi bi-telephone-fill"></i> Kontak Kami</h6>
-                    <ul class="list-unstyled small">
-                        <li class="mb-2">
-                            <strong>Admin 1:</strong> <a href="https://wa.me/6282160040017" target="_blank" class="text-warning">082160040017</a>
-                        </li>
-                        <li class="mb-2">
-                            <strong>Admin 2:</strong> <a href="https://wa.me/6285754946867" target="_blank" class="text-warning">085754946867</a>
-                        </li>
-                        <li class="mb-2">
-                            <strong>Admin 3:</strong> <a href="https://wa.me/6285217171780" target="_blank" class="text-warning">085217171780</a>
-                        </li>
-                        <li class="mb-2">
-                            <strong>Admin 4:</strong> <a href="https://wa.me/6285217171790" target="_blank" class="text-warning">085217171790</a>
-                        </li>
-                        <li class="mb-2">
-                            <strong>PMB:</strong> <a href="https://wa.me/6285247371117" target="_blank" class="text-warning">085247371117</a>
-                        </li>
-                        <li class="mb-2">
-                            <strong>WA Blast:</strong> <a href="https://wa.me/6282233031717" target="_blank" class="text-warning">082233031717</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <h6 class="text-white mb-3"><i class="bi bi-share-fill"></i> Ikuti Kami</h6>
-                    <div class="d-flex flex-column gap-2">
-                        <a href="https://www.instagram.com/salutsamarinda_univterbuka" target="_blank" class="text-white">
-                            <i class="bi bi-instagram fs-5 me-2"></i> @salutsamarinda_univterbuka
+                    {{-- Social Icons --}}
+                    <div class="d-flex gap-2">
+                        <a href="https://www.instagram.com/salutsamarinda_univterbuka" target="_blank" class="footer-social-icon">
+                            <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/people/Salut-UT-Samarinda/61556669633668/" target="_blank" class="text-white">
-                            <i class="bi bi-facebook fs-5 me-2"></i> Salut UT Samarinda
+                        <a href="https://www.facebook.com/people/Salut-UT-Samarinda/61556669633668/" target="_blank" class="footer-social-icon">
+                            <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@salut_ut_samarinda" target="_blank" class="text-white">
-                            <i class="bi bi-tiktok fs-5 me-2"></i> @salut_ut_samarinda
+                        <a href="https://www.tiktok.com/@salut_ut_samarinda" target="_blank" class="footer-social-icon">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/6282160040017" target="_blank" class="footer-social-icon">
+                            <i class="bi bi-whatsapp"></i>
                         </a>
                     </div>
                 </div>
+                
+                {{-- Quick Contact --}}
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <h6 class="footer-title">Hubungi Kami</h6>
+                    <div class="footer-contact-list">
+                        <a href="https://wa.me/6282160040017" target="_blank" class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <div>
+                                <span class="footer-contact-label">Admin 1</span>
+                                <span class="footer-contact-value">0821-6004-0017</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/6285754946867" target="_blank" class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <div>
+                                <span class="footer-contact-label">Admin 2</span>
+                                <span class="footer-contact-value">0857-5494-6867</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/6285247371117" target="_blank" class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                            <div>
+                                <span class="footer-contact-label">PMB (Pendaftaran)</span>
+                                <span class="footer-contact-value">0852-4737-1117</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                {{-- Location & Hours --}}
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="footer-title">Lokasi & Jam Operasional</h6>
+                    <div class="footer-info-card">
+                        <div class="footer-info-item">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <div>
+                                <strong>Alamat</strong>
+                                <p>Jl. Pramuka 6 Ruko No.3, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75125</p>
+                                <small class="text-warning">(Depan Kopiria Pramuka)</small>
+                            </div>
+                        </div>
+                        <div class="footer-info-item">
+                            <i class="bi bi-clock-fill"></i>
+                            <div>
+                                <strong>Jam Buka</strong>
+                                <p class="mb-0">Senin - Minggu</p>
+                                <span class="text-warning">08.00 - 21.00 WITA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr class="border-secondary">
-            <div class="text-center small py-3">
-                <p class="mb-0">&copy; {{ date('Y') }} SALUT UT Samarinda - Sentra Layanan Universitas Terbuka. All rights reserved.</p>
+            
+            {{-- Footer Bottom --}}
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; {{ date('Y') }} SALUT UT Samarinda. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                        <a href="https://ut.ac.id" target="_blank" class="footer-link">Universitas Terbuka</a>
+                        <span class="mx-2 text-secondary">|</span>
+                        <a href="{{ route('page.show', 'visi-misi') }}" class="footer-link">Visi & Misi</a>
+                        <span class="mx-2 text-secondary">|</span>
+                        <a href="#" class="footer-link">Kebijakan Privasi</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+    
+    <style>
+        /* Footer Styles */
+        .footer-brand img {
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social-icon:hover {
+            background: #fcdd01;
+            color: #214594;
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #fcdd01;
+            display: inline-block;
+        }
+        
+        .footer-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-contact-item:hover {
+            background: rgba(252, 221, 1, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #214594;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fcdd01;
+            font-size: 1rem;
+        }
+        
+        .footer-contact-label {
+            display: block;
+            font-size: 0.75rem;
+            color: #999;
+        }
+        
+        .footer-contact-value {
+            display: block;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .footer-info-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        
+        .footer-info-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-info-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .footer-info-item i {
+            color: #fcdd01;
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+        
+        .footer-info-item strong {
+            display: block;
+            color: #fff;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .footer-info-item p {
+            color: #aaa;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 1.25rem 0;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .footer-link {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #fcdd01;
+        }
+        
+        @media (max-width: 767.98px) {
+            .footer-info-card {
+                margin-top: 0.5rem;
+            }
+            
+            .footer-bottom {
+                text-align: center;
+            }
+            
+            .footer-bottom .col-md-6 {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
 
     {{-- Bootstrap 5 JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1592,6 +1788,8 @@
             
             // Calculate heights
             const topNavHeight = topNavbar.offsetHeight;
+            const menuNavHeight = menuNavbar.offsetHeight;
+            const totalHeight = topNavHeight + menuNavHeight;
             
             // Set transition for smooth animation
             topNavbar.style.transition = 'top 0.3s ease-in-out';
@@ -1607,9 +1805,9 @@
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > lastScrollTop && scrollTop > 50) {
-                    // Scroll Down - Hide top navbar, menu navbar stays at top
+                    // Scroll Down - Hide BOTH navbars
                     topNavbar.style.top = `-${topNavHeight}px`;
-                    menuNavbar.style.top = '0';
+                    menuNavbar.style.top = `-${menuNavHeight}px`;
                 } else {
                     // Scroll Up or at top - Show both Navbars
                     topNavbar.style.top = '0';
