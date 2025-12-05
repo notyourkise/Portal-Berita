@@ -45,6 +45,7 @@
             overflow-x: hidden;
             max-width: 100%;
             position: relative;
+            scroll-behavior: smooth;
         }
 
         body {
