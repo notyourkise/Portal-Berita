@@ -77,6 +77,31 @@ class PageResource extends Resource
                             ->default(0)
                             ->helperText('Urutan tampilan (semakin kecil, semakin atas)'),
                     ])->columns(2),
+
+                Forms\Components\Section::make('Pengaturan Navbar')
+                    ->description('Atur apakah halaman ini ditampilkan di menu navbar frontend')
+                    ->schema([
+                        Forms\Components\Toggle::make('show_in_navbar')
+                            ->label('Tampilkan di Navbar')
+                            ->default(false)
+                            ->helperText('Aktifkan untuk menampilkan halaman ini di menu navigasi'),
+                        Forms\Components\TextInput::make('navbar_order')
+                            ->label('Urutan di Navbar')
+                            ->numeric()
+                            ->default(0)
+                            ->helperText('Urutan tampilan di navbar (semakin kecil, semakin kiri)'),
+                        Forms\Components\TextInput::make('navbar_icon')
+                            ->label('Icon Navbar')
+                            ->placeholder('bi bi-house')
+                            ->helperText('Class icon Bootstrap Icons (contoh: bi bi-house, bi bi-person)'),
+                        Forms\Components\Select::make('navbar_parent')
+                            ->label('Parent Menu')
+                            ->options(fn () => Page::whereNull('navbar_parent')
+                                ->where('show_in_navbar', true)
+                                ->pluck('title', 'slug'))
+                            ->placeholder('Tidak ada (menu utama)')
+                            ->helperText('Pilih jika ini adalah submenu dari menu lain'),
+                    ])->columns(2),
             ]);
     }
 
@@ -101,6 +126,13 @@ class PageResource extends Resource
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
                     ->falseColor('danger'),
+                Tables\Columns\IconColumn::make('show_in_navbar')
+                    ->label('Di Navbar')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-bars-3')
+                    ->falseIcon('heroicon-o-minus')
+                    ->trueColor('info')
+                    ->falseColor('gray'),
                 Tables\Columns\TextColumn::make('order')
                     ->label('Urutan')
                     ->numeric()

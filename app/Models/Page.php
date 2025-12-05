@@ -15,10 +15,15 @@ class Page extends Model
         'meta_description',
         'is_active',
         'order',
+        'show_in_navbar',
+        'navbar_order',
+        'navbar_icon',
+        'navbar_parent',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'show_in_navbar' => 'boolean',
     ];
 
     // Auto-generate slug from title
@@ -45,5 +50,39 @@ class Page extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope: Get pages that should show in navbar
+     */
+    public function scopeInNavbar($query)
+    {
+        return $query->where('show_in_navbar', true)
+                     ->where('is_active', true)
+                     ->orderBy('navbar_order');
+    }
+
+    /**
+     * Scope: Get parent navbar items (no parent)
+     */
+    public function scopeNavbarParents($query)
+    {
+        return $query->inNavbar()->whereNull('navbar_parent');
+    }
+
+    /**
+     * Scope: Get children of a navbar parent
+     */
+    public function scopeNavbarChildren($query, $parent)
+    {
+        return $query->inNavbar()->where('navbar_parent', $parent);
+    }
+
+    /**
+     * Get navbar children for this page
+     */
+    public function getNavbarChildrenAttribute()
+    {
+        return static::navbarChildren($this->slug)->get();
     }
 }
