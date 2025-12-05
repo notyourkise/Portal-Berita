@@ -356,15 +356,20 @@
 
             /* Mobile mega dropdown styling */
             .mega-dropdown-menu {
+                display: none; /* Default hidden, toggle via JS */
                 position: static !important;
                 min-width: 100% !important;
                 width: 100% !important;
                 padding: 1rem;
                 background-color: #1a3670 !important;
                 border-radius: 0 !important;
-                max-height: 60vh;
+                max-height: 50vh;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
+            }
+
+            .mega-dropdown.show .mega-dropdown-menu {
+                display: block;
             }
 
             .mega-dropdown-menu .row {
@@ -1145,8 +1150,8 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="mega-section">
-                                        <h5>Universitas Terbuka Jakarta</h5>
-                                        <p class="small text-muted mb-3">Perguruan Tinggi Negeri Terjangkau & Terakreditasi A oleh BAN-PT</p>
+                                        <h5>SALUT Samarinda</h5>
+                                        <p class="small text-muted mb-3">Sentra Layanan Universitas Terbuka Kota Samarinda</p>
                                         <div class="mega-links">
                                             <a href="{{ route('page.show', 'kepala-dan-staf') }}" class="mega-link">
                                                 <i class="bi bi-person-circle"></i>
@@ -1275,12 +1280,12 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}#section-mahasiswa">
+                        <a class="nav-link" href="#section-mahasiswa" onclick="scrollToSection(event, 'section-mahasiswa')">
                             Mahasiswa
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}#footer">Kontak</a>
+                        <a class="nav-link" href="#footer" onclick="scrollToSection(event, 'footer')">Kontak</a>
                     </li>
                     
                     {{-- Dynamic Menu from Database --}}
@@ -1399,7 +1404,82 @@
     
     {{-- Dropdown Toggle Script --}}
     <script>
-        // Toggle dropdown on click
+        // Scroll to section function
+        function scrollToSection(event, sectionId) {
+            event.preventDefault();
+            const section = document.getElementById(sectionId);
+            if (section) {
+                // Close mobile menu first if open
+                const mainMenu = document.getElementById('mainMenu');
+                const bsCollapse = bootstrap.Collapse.getInstance(mainMenu);
+                if (bsCollapse && mainMenu.classList.contains('show')) {
+                    bsCollapse.hide();
+                }
+                
+                // Wait a bit for menu to close then scroll
+                setTimeout(() => {
+                    const navbarHeight = document.querySelector('.navbar-fixed-menu').offsetHeight + 10;
+                    const sectionTop = section.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: sectionTop,
+                        behavior: 'smooth'
+                    });
+                }, 300);
+            }
+        }
+
+        // Toggle mega dropdown on click (for mobile)
+        document.addEventListener('DOMContentLoaded', function() {
+            const megaDropdowns = document.querySelectorAll('.mega-dropdown > .nav-link');
+            
+            megaDropdowns.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    // Only use click toggle on mobile
+                    if (window.innerWidth < 992) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        const parentLi = this.closest('.mega-dropdown');
+                        const dropdownMenu = parentLi.querySelector('.mega-dropdown-menu');
+                        const chevron = this.querySelector('.bi-chevron-down, .bi-chevron-up');
+                        
+                        // Close all other mega dropdowns
+                        document.querySelectorAll('.mega-dropdown').forEach(function(item) {
+                            if (item !== parentLi) {
+                                item.classList.remove('show');
+                                const menu = item.querySelector('.mega-dropdown-menu');
+                                if (menu) menu.style.display = 'none';
+                                const otherChevron = item.querySelector('.bi-chevron-up');
+                                if (otherChevron) {
+                                    otherChevron.classList.remove('bi-chevron-up');
+                                    otherChevron.classList.add('bi-chevron-down');
+                                }
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        const isOpen = parentLi.classList.contains('show');
+                        if (isOpen) {
+                            parentLi.classList.remove('show');
+                            dropdownMenu.style.display = 'none';
+                            if (chevron) {
+                                chevron.classList.remove('bi-chevron-up');
+                                chevron.classList.add('bi-chevron-down');
+                            }
+                        } else {
+                            parentLi.classList.add('show');
+                            dropdownMenu.style.display = 'block';
+                            if (chevron) {
+                                chevron.classList.remove('bi-chevron-down');
+                                chevron.classList.add('bi-chevron-up');
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        // Toggle dropdown on click (for regular dropdowns)
         function toggleDropdown(event, element) {
             event.preventDefault();
             event.stopPropagation();
@@ -1505,48 +1585,63 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let lastScrollTop = 0;
+            let ticking = false;
             const topNavbar = document.querySelector('.navbar-fixed-top');
             const menuNavbar = document.querySelector('.navbar-fixed-menu');
             const mainMenu = document.getElementById('mainMenu');
             
             // Calculate heights
             const topNavHeight = topNavbar.offsetHeight;
-            const menuNavHeight = menuNavbar.offsetHeight;
-            const totalNavHeight = topNavHeight + menuNavHeight;
             
-            // Initial top position for menu navbar (should match CSS)
-            const initialMenuTop = parseInt(window.getComputedStyle(menuNavbar).top);
+            // Set transition for smooth animation
+            topNavbar.style.transition = 'top 0.3s ease-in-out';
+            menuNavbar.style.transition = 'top 0.3s ease-in-out';
 
-            window.addEventListener('scroll', function() {
+            function updateNavbar() {
                 // Jangan sembunyikan navbar saat menu mobile terbuka
                 if (mainMenu && mainMenu.classList.contains('show')) {
+                    ticking = false;
                     return;
                 }
 
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
-                if (scrollTop > lastScrollTop && scrollTop > topNavHeight) {
-                    // Scroll Down - Hide top navbar, tapi menu navbar nempel ke atas
+                if (scrollTop > lastScrollTop && scrollTop > 50) {
+                    // Scroll Down - Hide top navbar, menu navbar stays at top
                     topNavbar.style.top = `-${topNavHeight}px`;
-                    menuNavbar.style.top = '0'; // Menu navbar nempel ke atas
+                    menuNavbar.style.top = '0';
                 } else {
-                    // Scroll Up - Show both Navbars
+                    // Scroll Up or at top - Show both Navbars
                     topNavbar.style.top = '0';
-                    menuNavbar.style.top = `${initialMenuTop}px`;
+                    menuNavbar.style.top = `${topNavHeight}px`;
                 }
                 
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
             });
 
             // Lock body scroll saat menu mobile terbuka
             if (mainMenu) {
                 mainMenu.addEventListener('show.bs.collapse', function() {
                     document.body.classList.add('menu-open');
+                    // Pastikan navbar tetap di posisi normal saat menu terbuka
+                    topNavbar.style.top = '0';
+                    menuNavbar.style.top = `${topNavHeight}px`;
                 });
                 mainMenu.addEventListener('hide.bs.collapse', function() {
                     document.body.classList.remove('menu-open');
                 });
             }
+            
+            // Initial state
+            menuNavbar.style.top = `${topNavHeight}px`;
         });
     </script>
     
