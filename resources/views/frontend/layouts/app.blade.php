@@ -1190,12 +1190,12 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#section-mahasiswa">
+                        <a class="nav-link" href="{{ route('home') }}#section-mahasiswa">
                             Mahasiswa
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#footer">Kontak</a>
+                        <a class="nav-link" href="{{ route('home') }}#footer">Kontak</a>
                     </li>
                 </ul>
             </div>
