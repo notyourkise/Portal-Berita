@@ -173,11 +173,11 @@
 
 {{-- Mahasiswa Section --}}
 @if($mahasiswaArticles->count() > 0)
-<section class="py-4 py-md-5" style="background-color: #f8f9fa;" id="section-mahasiswa">
+<section class="py-4 py-md-5 section-mahasiswa" id="section-mahasiswa">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mb-md-4">
             <h2 class="section-title mb-0">
-                <i class="bi bi-mortarboard-fill" style="color: #214594;"></i> Kegiatan Mahasiswa
+                Kegiatan Mahasiswa
             </h2>
             <a href="{{ route('mahasiswa') }}" class="btn btn-sm" style="background-color: #fcdd01; color: #214594; border-color: #fcdd01;">
                 Lihat Semua <i class="bi bi-arrow-right"></i>
@@ -527,6 +527,17 @@
 
     .card-article a:hover {
         color: #214594 !important;
+    }
+
+    /* Section Mahasiswa - Light Mode */
+    .section-mahasiswa {
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Section Mahasiswa - Dark Mode */
+    body.dark-mode .section-mahasiswa {
+        background-color: #1a1a1a;
     }
 </style>
 @endpush
