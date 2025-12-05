@@ -41,52 +41,79 @@ class PortalBeritaSeeder extends Seeder
 
         $this->command->info('✅ Users created');
 
-        // Create Categories
+        // Create Categories untuk SALUT UT Samarinda
         $categories = [
             [
-                'name' => 'Politik',
-                'slug' => 'politik',
-                'description' => 'Berita seputar politik nasional dan internasional',
-                'meta_title' => 'Berita Politik Terkini',
-                'meta_description' => 'Kumpulan berita politik terbaru dan terkini',
+                'name' => 'Pengumuman',
+                'slug' => 'pengumuman',
+                'description' => 'Pengumuman resmi SALUT UT Samarinda',
+                'meta_title' => 'Pengumuman SALUT UT Samarinda',
+                'meta_description' => 'Pengumuman terbaru dari SALUT UT Samarinda',
                 'is_active' => true,
                 'order' => 1,
             ],
             [
-                'name' => 'Ekonomi',
-                'slug' => 'ekonomi',
-                'description' => 'Berita ekonomi, bisnis, dan keuangan',
-                'meta_title' => 'Berita Ekonomi Terkini',
-                'meta_description' => 'Informasi ekonomi dan bisnis terbaru',
+                'name' => 'Berita',
+                'slug' => 'berita',
+                'description' => 'Berita seputar SALUT UT Samarinda',
+                'meta_title' => 'Berita SALUT UT Samarinda',
+                'meta_description' => 'Berita terbaru dari SALUT UT Samarinda',
                 'is_active' => true,
                 'order' => 2,
             ],
             [
-                'name' => 'Teknologi',
-                'slug' => 'teknologi',
-                'description' => 'Berita teknologi, gadget, dan inovasi',
-                'meta_title' => 'Berita Teknologi Terkini',
-                'meta_description' => 'Update teknologi dan gadget terbaru',
+                'name' => 'Pendidikan',
+                'slug' => 'pendidikan',
+                'description' => 'Informasi pendidikan dan akademik',
+                'meta_title' => 'Berita Pendidikan Terkini',
+                'meta_description' => 'Informasi pendidikan dan akademik terbaru',
                 'is_active' => true,
                 'order' => 3,
             ],
             [
-                'name' => 'Olahraga',
-                'slug' => 'olahraga',
-                'description' => 'Berita olahraga nasional dan internasional',
-                'meta_title' => 'Berita Olahraga Terkini',
-                'meta_description' => 'Informasi olahraga dan pertandingan terbaru',
+                'name' => 'Kegiatan Mahasiswa',
+                'slug' => 'kegiatan-mahasiswa',
+                'description' => 'Kegiatan mahasiswa Universitas Terbuka',
+                'meta_title' => 'Kegiatan Mahasiswa UT Samarinda',
+                'meta_description' => 'Kegiatan mahasiswa Universitas Terbuka Samarinda',
                 'is_active' => true,
                 'order' => 4,
             ],
             [
-                'name' => 'Entertainment',
-                'slug' => 'entertainment',
-                'description' => 'Berita hiburan, selebriti, dan musik',
-                'meta_title' => 'Berita Entertainment Terkini',
-                'meta_description' => 'Kabar terbaru dunia hiburan dan selebriti',
+                'name' => 'Tutorial',
+                'slug' => 'tutorial',
+                'description' => 'Tutorial dan panduan untuk mahasiswa',
+                'meta_title' => 'Tutorial Mahasiswa UT',
+                'meta_description' => 'Panduan dan tutorial untuk mahasiswa Universitas Terbuka',
                 'is_active' => true,
                 'order' => 5,
+            ],
+            [
+                'name' => 'Tips & Panduan',
+                'slug' => 'tips-panduan',
+                'description' => 'Tips dan panduan belajar',
+                'meta_title' => 'Tips & Panduan Belajar',
+                'meta_description' => 'Tips dan panduan belajar untuk mahasiswa UT',
+                'is_active' => true,
+                'order' => 6,
+            ],
+            [
+                'name' => 'Informasi Akademik',
+                'slug' => 'informasi-akademik',
+                'description' => 'Informasi akademik Universitas Terbuka',
+                'meta_title' => 'Informasi Akademik UT',
+                'meta_description' => 'Informasi akademik Universitas Terbuka terbaru',
+                'is_active' => true,
+                'order' => 7,
+            ],
+            [
+                'name' => 'Prestasi',
+                'slug' => 'prestasi',
+                'description' => 'Prestasi mahasiswa dan alumni UT',
+                'meta_title' => 'Prestasi Mahasiswa UT',
+                'meta_description' => 'Prestasi mahasiswa dan alumni Universitas Terbuka',
+                'is_active' => true,
+                'order' => 8,
             ],
         ];
 
@@ -96,16 +123,16 @@ class PortalBeritaSeeder extends Seeder
 
         $this->command->info('✅ Categories created');
 
-        // Create Tags
+        // Create Tags untuk SALUT UT Samarinda
         $tags = [
-            ['name' => 'Breaking News', 'slug' => 'breaking-news'],
-            ['name' => 'Trending', 'slug' => 'trending'],
-            ['name' => 'Viral', 'slug' => 'viral'],
-            ['name' => 'Investigasi', 'slug' => 'investigasi'],
-            ['name' => 'Opini', 'slug' => 'opini'],
-            ['name' => 'Analisis', 'slug' => 'analisis'],
-            ['name' => 'Internasional', 'slug' => 'internasional'],
-            ['name' => 'Nasional', 'slug' => 'nasional'],
+            ['name' => 'Registrasi', 'slug' => 'registrasi'],
+            ['name' => 'Pendaftaran', 'slug' => 'pendaftaran'],
+            ['name' => 'Tutorial Online', 'slug' => 'tutorial-online'],
+            ['name' => 'Ujian', 'slug' => 'ujian'],
+            ['name' => 'Wisuda', 'slug' => 'wisuda'],
+            ['name' => 'Beasiswa', 'slug' => 'beasiswa'],
+            ['name' => 'Mahasiswa Baru', 'slug' => 'mahasiswa-baru'],
+            ['name' => 'Alumni', 'slug' => 'alumni'],
         ];
 
         foreach ($tags as $tag) {
@@ -114,71 +141,59 @@ class PortalBeritaSeeder extends Seeder
 
         $this->command->info('✅ Tags created');
 
-        // Create Sample Articles
-        $politik = Category::where('slug', 'politik')->first();
-        $teknologi = Category::where('slug', 'teknologi')->first();
-        $olahraga = Category::where('slug', 'olahraga')->first();
+        // Create Sample Articles untuk SALUT
+        $pendidikan = Category::where('slug', 'pendidikan')->first();
+        $pengumuman = Category::where('slug', 'pengumuman')->first();
+        $kegiatanMahasiswa = Category::where('slug', 'kegiatan-mahasiswa')->first();
 
         $articles = [
             [
-                'category_id' => $politik->id,
+                'category_id' => $pengumuman->id,
                 'author_id' => $reporter->id,
                 'editor_id' => $redaktur->id,
-                'title' => 'Sidang Paripurna DPR Membahas RUU Kesehatan',
-                'slug' => 'sidang-paripurna-dpr-membahas-ruu-kesehatan',
-                'excerpt' => 'DPR RI menggelar sidang paripurna untuk membahas Rancangan Undang-Undang tentang Kesehatan.',
-                'body' => '<p>Jakarta - Dewan Perwakilan Rakyat Republik Indonesia (DPR RI) menggelar sidang paripurna pada hari ini untuk membahas Rancangan Undang-Undang (RUU) tentang Kesehatan. Sidang dipimpin oleh Ketua DPR dan dihadiri oleh seluruh anggota dewan.</p><p>Dalam sidang tersebut, berbagai fraksi menyampaikan pandangan mereka terkait RUU Kesehatan. Pembahasan difokuskan pada peningkatan kualitas layanan kesehatan masyarakat dan aksesibilitas terhadap fasilitas kesehatan.</p>',
-                'meta_title' => 'Sidang Paripurna DPR Membahas RUU Kesehatan',
-                'meta_description' => 'DPR RI gelar sidang paripurna bahas RUU Kesehatan untuk tingkatkan kualitas layanan masyarakat',
+                'title' => 'Pembukaan Pendaftaran Mahasiswa Baru UT Samarinda',
+                'slug' => 'pembukaan-pendaftaran-mahasiswa-baru-ut-samarinda',
+                'excerpt' => 'SALUT UT Samarinda membuka pendaftaran mahasiswa baru untuk semester mendatang.',
+                'body' => '<p>Samarinda - Sentra Layanan Universitas Terbuka (SALUT) Samarinda mengumumkan pembukaan pendaftaran mahasiswa baru untuk semester mendatang. Pendaftaran dapat dilakukan secara online maupun langsung di kantor SALUT UT Samarinda.</p><p>Calon mahasiswa dapat memilih berbagai program studi yang tersedia mulai dari jenjang D3, S1, hingga S2. Untuk informasi lebih lanjut, silakan kunjungi kantor SALUT UT Samarinda atau hubungi nomor layanan yang tersedia.</p>',
+                'meta_title' => 'Pembukaan Pendaftaran Mahasiswa Baru UT Samarinda',
+                'meta_description' => 'Informasi pendaftaran mahasiswa baru Universitas Terbuka Samarinda',
                 'status' => 'published',
-                'published_at' => now()->subDays(1),
+                'published_at' => now()->subDays(2),
                 'is_featured' => true,
+                'is_headline' => true,
                 'views' => 1250,
             ],
             [
-                'category_id' => $teknologi->id,
+                'category_id' => $pendidikan->id,
                 'author_id' => $reporter->id,
                 'editor_id' => $redaktur->id,
-                'title' => 'Peluncuran Smartphone Flagship Terbaru dengan AI Canggih',
-                'slug' => 'peluncuran-smartphone-flagship-terbaru-dengan-ai-canggih',
-                'excerpt' => 'Produsen smartphone ternama meluncurkan flagship terbarunya dengan fitur AI yang revolusioner.',
-                'body' => '<p>Industri teknologi kembali dihebohkan dengan peluncuran smartphone flagship terbaru yang mengintegrasikan kecerdasan buatan (AI) tingkat lanjut. Smartphone ini diklaim mampu memberikan pengalaman pengguna yang lebih personal dan efisien.</p><p>Fitur unggulan meliputi kamera dengan AI photography, battery management cerdas, dan asisten virtual yang lebih responsif. Harga dibanderol mulai dari Rp 15 juta.</p>',
-                'meta_title' => 'Smartphone Flagship Terbaru dengan AI Canggih',
-                'meta_description' => 'Peluncuran smartphone flagship dengan fitur AI revolusioner untuk pengalaman pengguna terbaik',
+                'title' => 'Panduan Lengkap Registrasi Online Mahasiswa',
+                'slug' => 'panduan-lengkap-registrasi-online-mahasiswa',
+                'excerpt' => 'Panduan langkah demi langkah untuk melakukan registrasi online di Universitas Terbuka.',
+                'body' => '<p>Registrasi online di Universitas Terbuka kini semakin mudah. Mahasiswa dapat melakukan registrasi kapan saja dan dimana saja melalui portal sia.ut.ac.id.</p><p>Berikut adalah langkah-langkah registrasi online:</p><ol><li>Login ke portal sia.ut.ac.id</li><li>Pilih menu Registrasi</li><li>Pilih mata kuliah yang akan diambil</li><li>Lakukan pembayaran</li><li>Cetak kartu registrasi</li></ol>',
+                'meta_title' => 'Panduan Registrasi Online Mahasiswa UT',
+                'meta_description' => 'Panduan lengkap cara registrasi online di Universitas Terbuka',
                 'status' => 'published',
-                'published_at' => now()->subHours(12),
+                'published_at' => now()->subDays(5),
                 'is_featured' => true,
+                'is_headline' => false,
                 'views' => 890,
             ],
             [
-                'category_id' => $olahraga->id,
+                'category_id' => $kegiatanMahasiswa->id,
                 'author_id' => $reporter->id,
                 'editor_id' => null,
-                'title' => 'Tim Nasional Indonesia Raih Kemenangan di Kualifikasi',
-                'slug' => 'tim-nasional-indonesia-raih-kemenangan-di-kualifikasi',
-                'excerpt' => 'Timnas Indonesia berhasil meraih kemenangan penting dalam laga kualifikasi.',
-                'body' => '<p>Tim Nasional Indonesia menunjukkan performa impresif dengan meraih kemenangan 3-1 dalam pertandingan kualifikasi. Gol-gol kemenangan dicetak oleh pemain-pemain muda berbakat.</p><p>Kemenangan ini semakin memperkuat posisi Indonesia di klasemen dan membuka peluang besar untuk lolos ke babak selanjutnya.</p>',
-                'meta_title' => 'Timnas Indonesia Menang di Kualifikasi',
-                'meta_description' => 'Timnas Indonesia raih kemenangan penting 3-1 di laga kualifikasi',
+                'title' => 'Mahasiswa Juara Lomba 1',
+                'slug' => 'mahasiswa-juara-lomba-1',
+                'excerpt' => 'Mahasiswa UT Samarinda berhasil meraih juara dalam kompetisi.',
+                'body' => '<p>Mahasiswa Universitas Terbuka Samarinda kembali mengharumkan nama almamater dengan meraih prestasi gemilang dalam kompetisi tingkat regional.</p><p>Prestasi ini membuktikan bahwa mahasiswa pendidikan jarak jauh juga mampu bersaing dengan mahasiswa perguruan tinggi konvensional.</p>',
+                'meta_title' => 'Prestasi Mahasiswa UT Samarinda',
+                'meta_description' => 'Mahasiswa UT Samarinda raih juara dalam kompetisi',
                 'status' => 'published',
-                'published_at' => now()->subHours(3),
-                'is_featured' => false,
+                'published_at' => now()->subHours(13),
+                'is_featured' => true,
+                'is_headline' => true,
                 'views' => 567,
-            ],
-            [
-                'category_id' => $teknologi->id,
-                'author_id' => $reporter->id,
-                'editor_id' => null,
-                'title' => 'Draft: Inovasi Terbaru dalam Teknologi Energi Terbarukan',
-                'slug' => 'draft-inovasi-terbaru-dalam-teknologi-energi-terbarukan',
-                'excerpt' => 'Peneliti mengembangkan teknologi panel surya generasi baru dengan efisiensi tinggi.',
-                'body' => '<p>Tim peneliti berhasil mengembangkan teknologi panel surya generasi baru yang diklaim memiliki efisiensi konversi energi hingga 40%.</p>',
-                'meta_title' => 'Inovasi Teknologi Energi Terbarukan',
-                'meta_description' => 'Panel surya generasi baru dengan efisiensi tinggi',
-                'status' => 'draft',
-                'published_at' => null,
-                'is_featured' => false,
-                'views' => 0,
             ],
         ];
 
