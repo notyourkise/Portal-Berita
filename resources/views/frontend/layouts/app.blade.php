@@ -1370,33 +1370,50 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h6 class="footer-title">Hubungi Kami</h6>
                     <div class="footer-contact-list">
-                        <a href="https://wa.me/6282160040017" target="_blank" class="footer-contact-item">
-                            <div class="footer-contact-icon">
-                                <i class="bi bi-headset"></i>
-                            </div>
-                            <div>
-                                <span class="footer-contact-label">Admin 1</span>
-                                <span class="footer-contact-value">0821-6004-0017</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/6285754946867" target="_blank" class="footer-contact-item">
-                            <div class="footer-contact-icon">
-                                <i class="bi bi-headset"></i>
-                            </div>
-                            <div>
-                                <span class="footer-contact-label">Admin 2</span>
-                                <span class="footer-contact-value">0857-5494-6867</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/6285247371117" target="_blank" class="footer-contact-item">
-                            <div class="footer-contact-icon">
+                        <div class="footer-contact-grid">
+                            <a href="https://wa.me/6282160040017" target="_blank" class="footer-contact-item-sm">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <span class="footer-contact-label">Admin 1</span>
+                                    <span class="footer-contact-value">0821-6004-0017</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/6285754946867" target="_blank" class="footer-contact-item-sm">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <span class="footer-contact-label">Admin 2</span>
+                                    <span class="footer-contact-value">0857-5494-6867</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/6285217171780" target="_blank" class="footer-contact-item-sm">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <span class="footer-contact-label">Admin 3</span>
+                                    <span class="footer-contact-value">0852-1717-1780</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/6285217171790" target="_blank" class="footer-contact-item-sm">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <span class="footer-contact-label">Admin 4</span>
+                                    <span class="footer-contact-value">0852-1717-1790</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/6285247371117" target="_blank" class="footer-contact-item-sm footer-contact-highlight">
                                 <i class="bi bi-person-badge"></i>
-                            </div>
-                            <div>
-                                <span class="footer-contact-label">PMB (Pendaftaran)</span>
-                                <span class="footer-contact-value">0852-4737-1117</span>
-                            </div>
-                        </a>
+                                <div>
+                                    <span class="footer-contact-label">PMB (Pendaftaran)</span>
+                                    <span class="footer-contact-value">0852-4737-1117</span>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/6282233031717" target="_blank" class="footer-contact-item-sm">
+                                <i class="bi bi-broadcast"></i>
+                                <div>
+                                    <span class="footer-contact-label">WA Blast</span>
+                                    <span class="footer-contact-value">0822-3303-1717</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -1513,7 +1530,7 @@
         
         .footer-contact-label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #999;
         }
         
@@ -1521,7 +1538,47 @@
             display: block;
             color: #fff;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+        }
+        
+        .footer-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .footer-contact-item-sm {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-contact-item-sm:hover {
+            background: rgba(252, 221, 1, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .footer-contact-item-sm i {
+            color: #25D366;
+            font-size: 1.1rem;
+        }
+        
+        .footer-contact-item-sm .bi-person-badge {
+            color: #fcdd01;
+        }
+        
+        .footer-contact-item-sm .bi-broadcast {
+            color: #00a8ff;
+        }
+        
+        .footer-contact-highlight {
+            background: rgba(252, 221, 1, 0.1);
+            border: 1px solid rgba(252, 221, 1, 0.3);
         }
         
         .footer-info-card {
