@@ -38,6 +38,7 @@ return new class extends Migration
             // Stats
             $table->integer('views')->default(0);
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_headline')->default(false);
             $table->boolean('allow_comments')->default(true);
             
             $table->timestamps();
