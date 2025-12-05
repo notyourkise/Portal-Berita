@@ -1198,6 +1198,45 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}#footer">Kontak</a>
                     </li>
+                    
+                    {{-- Dynamic Menu from Database --}}
+                    @if(isset($navbarPages) && $navbarPages->count() > 0)
+                        @foreach($navbarPages as $page)
+                            @php
+                                $children = \App\Models\Page::navbarChildren($page->slug)->get();
+                            @endphp
+                            
+                            @if($children->count() > 0)
+                                {{-- Menu with dropdown --}}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
+                                        {{ $page->title }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        @foreach($children as $child)
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('page.show', $child->slug) }}">
+                                                    @if($child->navbar_icon)<i class="{{ $child->navbar_icon }} me-1"></i>@endif
+                                                    {{ $child->title }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                {{-- Simple menu item --}}
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('page/'.$page->slug) ? 'active' : '' }}" href="{{ route('page.show', $page->slug) }}">
+                                        @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
+                                        {{ $page->title }}
+                                    </a>
+                                </li>
+                            @endif
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
