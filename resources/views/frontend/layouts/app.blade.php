@@ -46,6 +46,7 @@
             max-width: 100%;
             position: relative;
             scroll-behavior: smooth;
+            overscroll-behavior: none; /* Mencegah pull-to-refresh di mobile */
         }
 
         body {
@@ -1043,6 +1044,9 @@
     {{-- Main Menu Navbar --}}
     <nav class="navbar navbar-expand-lg navbar-dark py-0 navbar-fixed-menu" style="background-color: #214594;">
         <div class="container">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav me-auto main-menu">
                     <li class="nav-item">
@@ -1239,9 +1243,6 @@
                     @endif
                 </ul>
             </div>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </nav>
 
@@ -1364,13 +1365,31 @@
             });
         }
 
-        // Re-initialize on window resize
+        // Handle responsive adjustments on window resize without page reload
         let resizeTimer;
+        let lastWidth = window.innerWidth;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                location.reload();
-            }, 500);
+                const currentWidth = window.innerWidth;
+                // Hanya update jika lebar berubah secara signifikan (bukan karena browser bar muncul/hilang)
+                if (Math.abs(currentWidth - lastWidth) > 100) {
+                    // Re-attach event listeners jika perlu
+                    if (currentWidth >= 992) {
+                        document.querySelectorAll('.mega-dropdown').forEach(dropdown => {
+                            dropdown.addEventListener('mouseenter', function() {
+                                this.classList.add('show');
+                                this.querySelector('.dropdown-menu')?.classList.add('show');
+                            });
+                            dropdown.addEventListener('mouseleave', function() {
+                                this.classList.remove('show');
+                                this.querySelector('.dropdown-menu')?.classList.remove('show');
+                            });
+                        });
+                    }
+                    lastWidth = currentWidth;
+                }
+            }, 250);
         });
     </script>
     
