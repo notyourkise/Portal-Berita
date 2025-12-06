@@ -1291,38 +1291,58 @@
                     {{-- Dynamic Menu from Database --}}
                     @if(isset($navbarPages) && $navbarPages->count() > 0)
                         @foreach($navbarPages as $page)
-                            @php
-                                $children = \App\Models\Page::navbarChildren($page->slug)->get();
-                            @endphp
-                            
-                            @if($children->count() > 0)
-                                {{-- Menu with dropdown --}}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if($page->menu_type === 'dropdown' && $page->dropdown_items && count($page->dropdown_items) > 0)
+                                {{-- Dropdown Menu Type --}}
+                                <li class="nav-item mega-dropdown">
+                                    <a class="nav-link" href="#">
                                         @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
-                                        {{ $page->title }}
+                                        {{ $page->title }} <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        @foreach($children as $child)
-                                            <li>
-                                                <a class="dropdown-item" href="{{ route('page.show', $child->slug) }}">
-                                                    @if($child->navbar_icon)<i class="{{ $child->navbar_icon }} me-1"></i>@endif
-                                                    {{ $child->title }}
-                                                </a>
-                                            </li>
+                                    <div class="dropdown-menu dropdown-menu-dark">
+                                        @foreach($page->dropdown_items as $item)
+                                            <a class="dropdown-item" href="{{ route('page.show', $page->slug) }}#{{ \Illuminate\Support\Str::slug($item['label']) }}">
+                                                @if(isset($item['icon']) && $item['icon'])
+                                                    <i class="{{ $item['icon'] }}"></i>
+                                                @endif
+                                                {{ $item['label'] }}
+                                            </a>
                                         @endforeach
-                                    </ul>
+                                    </div>
                                 </li>
                             @else
-                                {{-- Simple menu item --}}
-                                <li class="nav-item">
-                                    <a class="nav-link {{ request()->is('page/'.$page->slug) ? 'active' : '' }}" href="{{ route('page.show', $page->slug) }}">
-                                        @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
-                                        {{ $page->title }}
-                                    </a>
-                                </li>
+                                @php
+                                    $children = \App\Models\Page::navbarChildren($page->slug)->get();
+                                @endphp
+                                
+                                @if($children->count() > 0)
+                                    {{-- Menu with child pages (old style) --}}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
+                                            {{ $page->title }}
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li><a class="dropdown-item" href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            @foreach($children as $child)
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('page.show', $child->slug) }}">
+                                                        @if($child->navbar_icon)<i class="{{ $child->navbar_icon }} me-1"></i>@endif
+                                                        {{ $child->title }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @else
+                                    {{-- Simple menu item --}}
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->is('page/'.$page->slug) ? 'active' : '' }}" href="{{ route('page.show', $page->slug) }}">
+                                            @if($page->navbar_icon)<i class="{{ $page->navbar_icon }} me-1"></i>@endif
+                                            {{ $page->title }}
+                                        </a>
+                                    </li>
+                                @endif
                             @endif
                         @endforeach
                     @endif

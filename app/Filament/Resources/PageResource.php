@@ -84,6 +84,7 @@ class PageResource extends Resource
                         Forms\Components\Toggle::make('show_in_navbar')
                             ->label('Tampilkan di Navbar')
                             ->default(false)
+                            ->live()
                             ->helperText('Aktifkan untuk menampilkan halaman ini di menu navigasi'),
                         Forms\Components\TextInput::make('navbar_order')
                             ->label('Urutan di Navbar')
@@ -101,6 +102,33 @@ class PageResource extends Resource
                                 ->pluck('title', 'slug'))
                             ->placeholder('Tidak ada (menu utama)')
                             ->helperText('Pilih jika ini adalah submenu dari menu lain'),
+                        Forms\Components\Select::make('menu_type')
+                            ->label('Tipe Menu')
+                            ->options([
+                                'single' => 'Single Page (Menu Biasa)',
+                                'dropdown' => 'Dropdown Menu'
+                            ])
+                            ->default('single')
+                            ->live()
+                            ->visible(fn (Forms\Get $get) => $get('show_in_navbar'))
+                            ->helperText('Pilih tipe menu: Single untuk link halaman, Dropdown untuk menu dengan sub-menu'),
+                        Forms\Components\Repeater::make('dropdown_items')
+                            ->label('Item Dropdown')
+                            ->schema([
+                                Forms\Components\TextInput::make('label')
+                                    ->label('Label Menu')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('icon')
+                                    ->label('Icon')
+                                    ->placeholder('bi bi-star')
+                                    ->helperText('Class icon Bootstrap Icons'),
+                            ])
+                            ->visible(fn (Forms\Get $get) => $get('menu_type') === 'dropdown' && $get('show_in_navbar'))
+                            ->columnSpanFull()
+                            ->addActionLabel('Tambah Item Dropdown')
+                            ->defaultItems(0)
+                            ->helperText('Tambahkan item-item yang akan muncul dalam dropdown menu'),
                     ])->columns(2),
             ]);
     }

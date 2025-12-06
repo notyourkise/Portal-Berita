@@ -19,11 +19,14 @@ class Page extends Model
         'navbar_order',
         'navbar_icon',
         'navbar_parent',
+        'menu_type',
+        'dropdown_items',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'show_in_navbar' => 'boolean',
+        'dropdown_items' => 'array',
     ];
 
     // Auto-generate slug from title
