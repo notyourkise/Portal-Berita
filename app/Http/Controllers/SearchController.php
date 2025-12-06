@@ -14,9 +14,9 @@ class SearchController extends Controller
         $articles = Article::published()
             ->when($keyword, function ($query, $keyword) {
                 return $query->where(function ($q) use ($keyword) {
-                    $q->where('title', 'ILIKE', "%{$keyword}%")
-                      ->orWhere('body', 'ILIKE', "%{$keyword}%")
-                      ->orWhere('excerpt', 'ILIKE', "%{$keyword}%");
+                    $q->where('title', 'LIKE', "%{$keyword}%")
+                      ->orWhere('body', 'LIKE', "%{$keyword}%")
+                      ->orWhere('excerpt', 'LIKE', "%{$keyword}%");
                 });
             })
             ->with(['category', 'author'])
