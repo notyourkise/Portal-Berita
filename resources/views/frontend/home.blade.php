@@ -6,7 +6,7 @@
 {{-- Latest News --}}
 <section class="py-4 py-md-5">
     <div class="container">
-        <h2 class="section-title">Informasi Terbaru</h2>
+        <h2 class="section-title">Informasi Terkini</h2>
         <div class="row g-3 g-md-4">
             {{-- Main Content (8 columns on desktop) --}}
             <div class="col-lg-8">
