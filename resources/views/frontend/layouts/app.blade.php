@@ -1197,6 +1197,27 @@
                         <a class="nav-link" href="#">
                             Akademik <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
                         </a>
+                        <div class="mega-dropdown-menu" style="min-width: 400px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mega-section">
+                                        <a href="{{ route('page.show', 'program-studi') }}" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem; margin-bottom: 0.5rem;">
+                                            <i class="bi bi-mortarboard"></i>
+                                            <span>Program Studi</span>
+                                        </a>
+                                        <a href="{{ route('page.show', 'fakultas') }}" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
+                                            <i class="bi bi-building"></i>
+                                            <span>Fakultas</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mega-dropdown d-none">
+                        <a class="nav-link" href="#">
+                            Akademik OLD <i class="bi bi-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                        </a>
                         <div class="mega-dropdown-menu" style="min-width: 900px;">
                             <div class="row">
                                 <div class="col-md-4">
@@ -1296,7 +1317,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-dark">
                                         @foreach($page->dropdown_items as $item)
-                                            <a class="dropdown-item" href="{{ route('page.show', $page->slug) }}#{{ \Illuminate\Support\Str::slug($item['label']) }}">
+                                            <a class="dropdown-item" href="{{ route('submenu.show', [$page->slug, $item['slug']]) }}">
                                                 @if(isset($item['icon']) && $item['icon'])
                                                     <i class="{{ $item['icon'] }}"></i>
                                                 @endif

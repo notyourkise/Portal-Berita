@@ -118,17 +118,44 @@ class PageResource extends Resource
                                 Forms\Components\TextInput::make('label')
                                     ->label('Label Menu')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->columnSpan(1),
                                 Forms\Components\TextInput::make('icon')
                                     ->label('Icon')
                                     ->placeholder('bi bi-star')
-                                    ->helperText('Class icon Bootstrap Icons'),
+                                    ->helperText('Class icon Bootstrap Icons')
+                                    ->columnSpan(1),
+                                Forms\Components\TextInput::make('slug')
+                                    ->label('Slug (URL)')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->helperText('URL slug untuk halaman ini (contoh: mahasiswa, kelas)')
+                                    ->columnSpan(2),
+                                Forms\Components\RichEditor::make('content')
+                                    ->label('Konten Halaman')
+                                    ->helperText('Isi konten untuk sub-menu ini')
+                                    ->columnSpanFull()
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'strike',
+                                        'link',
+                                        'heading',
+                                        'bulletList',
+                                        'orderedList',
+                                        'blockquote',
+                                        'codeBlock',
+                                        'table',
+                                    ]),
                             ])
                             ->visible(fn (Forms\Get $get) => $get('menu_type') === 'dropdown' && $get('show_in_navbar'))
                             ->columnSpanFull()
+                            ->columns(2)
                             ->addActionLabel('Tambah Item Dropdown')
                             ->defaultItems(0)
-                            ->helperText('Tambahkan item-item yang akan muncul dalam dropdown menu'),
+                            ->collapsible()
+                            ->helperText('Tambahkan item-item yang akan muncul dalam dropdown menu beserta kontennya'),
                     ])->columns(2),
             ]);
     }

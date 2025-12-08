@@ -19,6 +19,7 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // Page Routes (for Visi Misi, About, etc)
 Route::get('/page/{slug}', [PageController::class, 'show'])->name('page.show');
+Route::get('/page/{pageSlug}/{submenuSlug}', [PageController::class, 'showSubmenu'])->name('submenu.show');
 
 // Mahasiswa Routes (Kegiatan Mahasiswa category)
 Route::get('/mahasiswa', [CategoryController::class, 'mahasiswa'])->name('mahasiswa');
