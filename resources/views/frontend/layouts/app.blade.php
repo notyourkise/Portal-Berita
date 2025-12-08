@@ -1317,12 +1317,23 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-dark">
                                         @foreach($page->dropdown_items as $item)
-                                            <a class="dropdown-item" href="{{ route('submenu.show', [$page->slug, $item['slug']]) }}">
-                                                @if(isset($item['icon']) && $item['icon'])
-                                                    <i class="{{ $item['icon'] }}"></i>
-                                                @endif
-                                                {{ $item['label'] }}
-                                            </a>
+                                            @if(isset($item['slug']) && $item['slug'])
+                                                {{-- New format with slug --}}
+                                                <a class="dropdown-item" href="{{ route('submenu.show', [$page->slug, $item['slug']]) }}">
+                                                    @if(isset($item['icon']) && $item['icon'])
+                                                        <i class="{{ $item['icon'] }}"></i>
+                                                    @endif
+                                                    {{ $item['label'] }}
+                                                </a>
+                                            @else
+                                                {{-- Old format without slug (anchor link) --}}
+                                                <a class="dropdown-item" href="{{ route('page.show', $page->slug) }}#{{ \Illuminate\Support\Str::slug($item['label']) }}">
+                                                    @if(isset($item['icon']) && $item['icon'])
+                                                        <i class="{{ $item['icon'] }}"></i>
+                                                    @endif
+                                                    {{ $item['label'] }}
+                                                </a>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </li>
