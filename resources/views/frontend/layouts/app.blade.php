@@ -1188,10 +1188,6 @@
                                             <i class="bi bi-building"></i>
                                             <span>Sejarah</span>
                                         </a>
-                                        <a href="https://ut.ac.id" target="_blank" class="mega-link" style="flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem;">
-                                            <i class="bi bi-award"></i>
-                                            <span>UT Pusat</span>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1374,7 +1370,7 @@
                         <a href="https://www.instagram.com/salutsamarinda_univterbuka" target="_blank" class="footer-social-icon">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="https://www.facebook.com/people/Salut-UT-Samarinda/61556669633668/" target="_blank" class="footer-social-icon">
+                        <a href="https://www.facebook.com/salut.ut.samarinda" target="_blank" class="footer-social-icon">
                             <i class="bi bi-facebook"></i>
                         </a>
                         <a href="https://www.tiktok.com/@salut_ut_samarinda" target="_blank" class="footer-social-icon">
@@ -1390,50 +1386,24 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <h6 class="footer-title">Hubungi Kami</h6>
                     <div class="footer-contact-list">
-                        <div class="footer-contact-grid">
-                            <a href="https://wa.me/6282160040017" target="_blank" class="footer-contact-item-sm">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="footer-contact-label">Admin 1</span>
-                                    <span class="footer-contact-value">0821-6004-0017</span>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6285754946867" target="_blank" class="footer-contact-item-sm">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="footer-contact-label">Admin 2</span>
-                                    <span class="footer-contact-value">0857-5494-6867</span>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6285217171780" target="_blank" class="footer-contact-item-sm">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="footer-contact-label">Admin 3</span>
-                                    <span class="footer-contact-value">0852-1717-1780</span>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6285217171790" target="_blank" class="footer-contact-item-sm">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="footer-contact-label">Admin 4</span>
-                                    <span class="footer-contact-value">0852-1717-1790</span>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6285247371117" target="_blank" class="footer-contact-item-sm footer-contact-highlight">
+                        <a href="https://wa.me/6282160040017" target="_blank" class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <div>
+                                <span class="footer-contact-label">Konsultasi Perkuliahan</span>
+                                <span class="footer-contact-value">0821-6004-0017</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/6285247371117" target="_blank" class="footer-contact-item footer-contact-highlight">
+                            <div class="footer-contact-icon">
                                 <i class="bi bi-person-badge"></i>
-                                <div>
-                                    <span class="footer-contact-label">PMB (Pendaftaran)</span>
-                                    <span class="footer-contact-value">0852-4737-1117</span>
-                                </div>
-                            </a>
-                            <a href="https://wa.me/6282233031717" target="_blank" class="footer-contact-item-sm">
-                                <i class="bi bi-broadcast"></i>
-                                <div>
-                                    <span class="footer-contact-label">WA Blast</span>
-                                    <span class="footer-contact-value">0822-3303-1717</span>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                            <div>
+                                <span class="footer-contact-label">PMB (Pendaftaran)</span>
+                                <span class="footer-contact-value">0852-4737-1117</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 
